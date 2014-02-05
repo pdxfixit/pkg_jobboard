@@ -1,9 +1,9 @@
 <?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
 // Protect from unauthorized access
 defined('_JEXEC') or die('Restricted Access');
@@ -13,37 +13,35 @@ jimport('joomla.application.component.controller');
 
 /**
  * The Dashboard controller class
- *
- */
-class JobboardControllerDashboard extends JController
-{
-	/**
-	 * Displays the Dashboard (main page)
-	 * Accessible at index.php?option=com_Jobboard
-	 */
-	function display()
-	{
-	    $doc =& JFactory::getDocument();
-        $style = " .icon-48-job_board {background-image:url(components/com_jobboard/images/job_board.png); no-repeat; }";
-        $doc->addStyleDeclaration( $style );
 
-		JToolBarHelper::title(JText::_( 'COM_JOBBOARD_JOB_BOARD'), 'job_board.png');
-		JToolBarHelper::addNewX('newJob', JText::_('COM_JOBBOARD_NEW_JOB'));
-		JToolBarHelper::divider();
+ */
+class JobboardControllerDashboard extends JController {
+
+    /**
+     * Displays the Dashboard (main page)
+     * Accessible at index.php?option=com_Jobboard
+     */
+    function display() {
+        $doc =& JFactory::getDocument();
+        $style = " .icon-48-job_board {background-image:url(components/com_jobboard/images/job_board.png); no-repeat; }";
+        $doc->addStyleDeclaration($style);
+
+        JToolBarHelper::title(JText::_('COM_JOBBOARD_JOB_BOARD'), 'job_board.png');
+        JToolBarHelper::addNewX('newJob', JText::_('COM_JOBBOARD_NEW_JOB'));
+        JToolBarHelper::divider();
 
         JobBoardToolbarHelper::setToolbarLinks('dashboard');
 
-		parent::display();
-	}
+        parent::display();
+    }
 
-	function newJob()
-	{
+    function newJob() {
         $this->setRedirect('index.php?option=com_jobboard&view=jobs&task=edit&cid[]=0', '');
 
-	}
+    }
 }
 
 $controller = new JobboardControllerDashboard();
-if(!isset($task)) $task = "display";
+if (!isset($task)) $task = "display";
 $controller->execute($task);
 $controller->redirect();

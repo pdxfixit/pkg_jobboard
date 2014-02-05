@@ -1,13 +1,12 @@
-
 /**
   @package JobBoard
   @copyright Copyright (c)2010-2012 Tandolin
   @license : GNU General Public License v2 or later
 ----------------------------------------------------------------------- */
 
-  div#loginPopup {
+div#loginPopup {
     background: #fff;
-    padding:10px;
+    padding: 10px;
     border: 1px solid #DBDFE3;
     box-shadow: 0 0 5px #E3E5E5;
     clear: right;
@@ -17,57 +16,70 @@
     top: 20px;
     width: 177px;
     z-index: 2000;
-  }
- div#loginPopup div#loginPopupForm {
+}
+
+div#loginPopup div#loginPopupForm {
     padding: 10px 14px;
     position: relative;
     overflow: hidden;
- }
- div#loginPopup .field {
+}
+
+div#loginPopup .field {
     margin-bottom: 1px;
- }
- div#loginPopup label, div#loginPopup .forgotPass, div#loginPopup .elements input {
-    font: 11px/12px arial,helvetica,sans-serif;
- }
- div#loginPopup .elements {
+}
+
+div#loginPopup label, div#loginPopup .forgotPass, div#loginPopup .elements input {
+    font: 11px/12px arial, helvetica, sans-serif;
+}
+
+div#loginPopup .elements {
     padding-top: 3px;
- }
- div#loginPopup .elements input {
+}
+
+div#loginPopup .elements input {
     color: #787878;
     padding: 5px 10px;
-    border: 1px solid #DCE0E4;  
- }
- div#loginPopup .fLoginOptions {
+    border: 1px solid #DCE0E4;
+}
+
+div#loginPopup .fLoginOptions {
     overflow: hidden;
- }
- div#loginPopup .fLoginOptions span {
+}
+
+div#loginPopup .fLoginOptions span {
     display: block;
     float: left;
     padding: 1px 5px;
- }
- div#loginPopup .action {
+}
+
+div#loginPopup .action {
     text-align: center;
     padding: 10px 0 0 0;
- }
- div#loginPopup .fLoginOptions input {
+}
+
+div#loginPopup .fLoginOptions input {
     display: block;
     float: left;
     border: none;
     padding: 0;
- }
- div#loginPopup .action button {
+}
+
+div#loginPopup .action button {
     padding: 4px 15px;
- }
- div#loginPopup .forgotPass {
+}
+
+div#loginPopup .forgotPass {
     margin-bottom: 10px;
     width: 100%;
- }
- div#loginPopup .forgotPass a, div#loginPopup .action a {
+}
+
+div#loginPopup .forgotPass a, div#loginPopup .action a {
     font-size: 10px;
     text-decoration: none;
-    float:left;
+    float: left;
     width: 100%;
- }
- div#loginPopup .action a#pLoginCancel {
-    width:auto;
- }
+}
+
+div#loginPopup .action a#pLoginCancel {
+    width: auto;
+}

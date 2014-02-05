@@ -1,18 +1,20 @@
-
 /**
   @package JobBoard
   @copyright Copyright (c)2010-2012 Tandolin
   @license : GNU General Public License v2 or later
 ----------------------------------------------------------------------- */
 
-#jbcontent {width: 100%;
-float: left;
-clear: both;}
+#jbcontent {
+    width: 100%;
+    float: left;
+    clear: both;
+}
+
 li#user_nav a.msg {
-	background: url("../images/social_icons.png") no-repeat scroll -42px center transparent;
-    width:16px;
-    height:16px;
-    display:inline-block;
-    text-indent:21px;
+    background: url("../images/social_icons.png") no-repeat scroll -42px center transparent;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    text-indent: 21px;
     font-size: smaller;
 }

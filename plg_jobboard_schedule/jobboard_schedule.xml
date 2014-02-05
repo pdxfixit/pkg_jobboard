@@ -13,12 +13,10 @@
 		<filename plugin="jobboard_schedule">jobboard_schedule.php</filename>
 		<filename plugin="jobboard_schedule">index.html</filename>
 	</files>
-    <languages>
-        <language tag="en-GB">languages/en-GB.plg_jobboard_schedule.ini</language>
-        <language tag="en-GB">languages/en-GB.plg_jobboard_schedule.sys.ini</language>
-    </languages>
-    <params>
-    </params>
-    <config>
-    </config>
+	<languages>
+		<language tag="en-GB">languages/en-GB.plg_jobboard_schedule.ini</language>
+		<language tag="en-GB">languages/en-GB.plg_jobboard_schedule.sys.ini</language>
+	</languages>
+	<params></params>
+	<config></config>
 </install>

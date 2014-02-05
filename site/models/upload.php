@@ -1,87 +1,82 @@
 <?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
-   // Protect from unauthorized access
-   defined('_JEXEC') or die('Restricted Access');
+// Protect from unauthorized access
+defined('_JEXEC') or die('Restricted Access');
 
-   class JobboardModelUpload extends JModel
-   {
-       var $_id;
+class JobboardModelUpload extends JModel {
 
+    var $_id;
 
-       var $_result;
-       var $_session;
+    var $_result;
+    var $_session;
 
-     /**
+    /**
      * Constructor
-     *
-     */
-       function __construct()
-       {
-         parent :: __construct();
-       }
 
-     /**
+     */
+    function __construct() {
+        parent :: __construct();
+    }
+
+    /**
      * Saves Application data
-     *
      * @return boolean
      */
-       function saveApplication(&$fileobj, $field_array, $unsol=false)
-       {                                                            
-           $db = & $this->getDBO();
-           $tbl = $unsol == true? $db->nameQuote('#__jobboard_unsolicited') : $db->nameQuote('#__jobboard_applicants');
-           $query = 'INSERT INTO '.$tbl.'
-                ('.$db->nameQuote('request_date').', '.$db->nameQuote('job_id').',
-                '.$db->nameQuote('first_name').', '.$db->nameQuote('last_name').',
-                '.$db->nameQuote('email').', '.$db->nameQuote('tel').',
-                '.$db->nameQuote('title').', '.$db->nameQuote('filename').',
-                '.$db->nameQuote('file_hash').', '.$db->nameQuote('filetype').', '.$db->nameQuote('cover_note').')
+    function saveApplication(&$fileobj, $field_array, $unsol = false) {
+        $db = & $this->getDBO();
+        $tbl = $unsol == true ? $db->nameQuote('#__jobboard_unsolicited') : $db->nameQuote('#__jobboard_applicants');
+        $query = 'INSERT INTO ' . $tbl . '
+                (' . $db->nameQuote('request_date') . ', ' . $db->nameQuote('job_id') . ',
+                ' . $db->nameQuote('first_name') . ', ' . $db->nameQuote('last_name') . ',
+                ' . $db->nameQuote('email') . ', ' . $db->nameQuote('tel') . ',
+                ' . $db->nameQuote('title') . ', ' . $db->nameQuote('filename') . ',
+                ' . $db->nameQuote('file_hash') . ', ' . $db->nameQuote('filetype') . ', ' . $db->nameQuote('cover_note') . ')
                 VALUES (UTC_TIMESTAMP
-                  , "'.$db->getEscaped($field_array->job_id).'"
-                  , "'.$db->getEscaped($field_array->fields->first_name).'"
-                  , "'.$db->getEscaped($field_array->fields->last_name).'"
-                  , "'.$db->getEscaped($field_array->fields->email).'"
-                  , "'.$db->getEscaped($field_array->fields->tel).'"
-                  , "'.$db->getEscaped($field_array->fields->title).'"
-                  , "'.$db->getEscaped($fileobj[0]).'"
-                  , "'.$db->getEscaped($fileobj[1]).'"
-                  , "'.$db->getEscaped($fileobj[2]).'"
-                  , "'.$db->getEscaped($field_array->fields->cover_note).'")';    
-           $db->setQuery($query);
-           return  $db->Query();
-       }
+                  , "' . $db->getEscaped($field_array->job_id) . '"
+                  , "' . $db->getEscaped($field_array->fields->first_name) . '"
+                  , "' . $db->getEscaped($field_array->fields->last_name) . '"
+                  , "' . $db->getEscaped($field_array->fields->email) . '"
+                  , "' . $db->getEscaped($field_array->fields->tel) . '"
+                  , "' . $db->getEscaped($field_array->fields->title) . '"
+                  , "' . $db->getEscaped($fileobj[0]) . '"
+                  , "' . $db->getEscaped($fileobj[1]) . '"
+                  , "' . $db->getEscaped($fileobj[2]) . '"
+                  , "' . $db->getEscaped($field_array->fields->cover_note) . '")';
+        $db->setQuery($query);
 
+        return $db->Query();
+    }
 
-     /**
+    /**
      * Saves Unsolicited Application data
-     *
      * @return boolean
      */
-       function saveUnsolicited(&$fileobj, $field_array)
-       {
-           $field_array->job_id = 0;
-           return self::saveApplication($fileobj, $field_array, true);
-       }
+    function saveUnsolicited(&$fileobj, $field_array) {
+        $field_array->job_id = 0;
 
-       function incrApplications($id) {
-           $db = & $this->getDBO();
-           $query = 'UPDATE #__jobboard_jobs SET
+        return self::saveApplication($fileobj, $field_array, true);
+    }
+
+    function incrApplications($id) {
+        $db = & $this->getDBO();
+        $query = 'UPDATE #__jobboard_jobs SET
                 num_applications =  num_applications + 1
-                WHERE id='. $id;
-           $db->setQuery($query);
-           $this->_result = $db->Query();
+                WHERE id=' . $id;
+        $db->setQuery($query);
+        $this->_result = $db->Query();
+
         // return the save response
-         return $this->_result;
-       }
+        return $this->_result;
+    }
 
-
-       function getData($id) {
-           $db = & $this->getDBO();
-           $sql = 'SELECT
+    function getData($id) {
+        $db = & $this->getDBO();
+        $sql = 'SELECT
                        j.post_date
                       , j.job_title
                       , j.job_type
@@ -104,34 +99,38 @@
                       INNER JOIN #__jobboard_countries AS jc
                           ON (j.country = jc.country_id)
                       WHERE j.id = ' . $id;
-           $db->setQuery($sql);
-           return $db->loadObject();
-       }
+        $db->setQuery($sql);
 
-       function getDept($job_id) {
-           $department = $this->_getDeptId($job_id);
-           $db = & $this->getDBO();
-           $sql = 'SELECT  `name`, `contact_name`, `contact_email`, `notify`, `notify_admin` FROM #__jobboard_departments
-                      WHERE `id` = '.intval($department);
-           $db->setQuery($sql);
-           return $db->loadObject();
-       }
+        return $db->loadObject();
+    }
 
-       function _getDeptId($job_id) {
-           $db = & $this->getDBO();
-           $sql = 'SELECT `department`  FROM #__jobboard_jobs
-                      WHERE id = '.intval($job_id);
-           $db->setQuery($sql);
-           return $db->loadResult();
-       }
+    function getDept($job_id) {
+        $department = $this->_getDeptId($job_id);
+        $db = & $this->getDBO();
+        $sql = 'SELECT  `name`, `contact_name`, `contact_email`, `notify`, `notify_admin` FROM #__jobboard_departments
+                      WHERE `id` = ' . intval($department);
+        $db->setQuery($sql);
 
-       function getJobLocation($job_id) {
-           $db = & $this->getDBO();
-           $sql = 'SELECT city FROM  #__jobboard_jobs
-                      WHERE id = '.intval($job_id);
-           $db->setQuery($sql);
-           return $db->loadResult();
-       }
+        return $db->loadObject();
+    }
+
+    function _getDeptId($job_id) {
+        $db = & $this->getDBO();
+        $sql = 'SELECT `department`  FROM #__jobboard_jobs
+                      WHERE id = ' . intval($job_id);
+        $db->setQuery($sql);
+
+        return $db->loadResult();
+    }
+
+    function getJobLocation($job_id) {
+        $db = & $this->getDBO();
+        $sql = 'SELECT city FROM  #__jobboard_jobs
+                      WHERE id = ' . intval($job_id);
+        $db->setQuery($sql);
+
+        return $db->loadResult();
+    }
 
 }
 

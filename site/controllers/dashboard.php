@@ -1,9 +1,9 @@
 <?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
 // Protect from unauthorized access
 defined('_JEXEC') or die('Restricted Access');
@@ -12,13 +12,11 @@ defined('_JEXEC') or die('Restricted Access');
 // Load framework base classes
 jimport('joomla.application.component.controller');
 
-class JobboardControllerDashboard extends JController
-{
+class JobboardControllerDashboard extends JController {
 
-	function display()
-	{   
-		parent::display();
-	}
+    function display() {
+        parent::display();
+    }
 
 }
 

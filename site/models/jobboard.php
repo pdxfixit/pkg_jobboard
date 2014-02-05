@@ -1,28 +1,28 @@
 <?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
-   // Protect from unauthorized access
-   defined('_JEXEC') or die('Restricted Access');
+// Protect from unauthorized access
+defined('_JEXEC') or die('Restricted Access');
 
-   class JobboardModelJobboard extends JModel
-   {
+class JobboardModelJobboard extends JModel {
 
-       function getIntroConfig() {
-           $db = & $this->getDBO();
-           $sql = 'SELECT `id`, `home_intro_title`, `home_intro`, `home_jobs_limit` FROM `#__jobboard_config`
+    function getIntroConfig() {
+        $db = & $this->getDBO();
+        $sql = 'SELECT `id`, `home_intro_title`, `home_intro`, `home_jobs_limit` FROM `#__jobboard_config`
                       WHERE `id` = 1';
-           $db->setQuery($sql);
-           return $db->loadAssoc();
-       }
+        $db->setQuery($sql);
 
-       function getIntroCats(){
-           $app = JFactory::getApplication();
-           $db = & $this->getDBO();
-           $sql =  '(SELECT c.`id`, COUNT(category) AS total, c.`type` AS `name`
+        return $db->loadAssoc();
+    }
+
+    function getIntroCats() {
+        $app = JFactory::getApplication();
+        $db = & $this->getDBO();
+        $sql = '(SELECT c.`id`, COUNT(category) AS total, c.`type` AS `name`
                      FROM #__jobboard_categories AS c JOIN #__jobboard_jobs AS j
                      ON( c.id = j.`category`) WHERE c.`enabled` = 1 AND j.`published` = 1
                      GROUP BY category
@@ -33,10 +33,11 @@
                     WHERE (NOT EXISTS
                       (SELECT `id` FROM   #__jobboard_jobs AS j WHERE  j.`category` = c.`id` AND j.`published` = 1) )
                       AND c.`enabled` = 1 AND c.`id` > 1  LIMIT 100)';
-           $db->setQuery($sql);
-           return $db->loadAssocList();
-       }
+        $db->setQuery($sql);
 
-   }
+        return $db->loadAssocList();
+    }
+
+}
 
 ?>

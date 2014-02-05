@@ -1,18 +1,17 @@
 <?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
 // Protect from unauthorized access
 defined('_JEXEC') or die('Restricted Access');
 
-class JobBoardHumanHelper
-{
+class JobBoardHumanHelper {
 
     /** Width of the image */
-    public $width  = 150;
+    public $width = 150;
 
     /** Height of the image */
     public $height = 40;
@@ -22,7 +21,6 @@ class JobBoardHumanHelper
 
     /**
      * Max word length (for non-dictionary random text generation)
-     *
      * Used for dictionary words indicating the word-length
      * for font-size modification purposes
      */
@@ -33,10 +31,10 @@ class JobBoardHumanHelper
 
     /** Foreground colors in RGB-array */
     public $colors = array(
-        array(27,78,181), // blue
-        array(22,163,35), // green
-        array(214,36,7),  // red
-        array(255,146,10),  // yellow/orange (yerange) :P
+        array(27, 78, 181), // blue
+        array(22, 163, 35), // green
+        array(214, 36, 7), // red
+        array(255, 146, 10), // yellow/orange (yerange) :P
     );
 
     /** Shadow color in RGB-array or null */
@@ -44,16 +42,16 @@ class JobBoardHumanHelper
 
     /**
      * Font configuration
-     *
+
      */
     public $fonts = array(
-        'StayPuft' => array('spacing' =>-1.5,'minSize' => 29, 'maxSize' => 33, 'font' => 'StayPuft.ttf'),
+        'StayPuft' => array('spacing' => -1.5, 'minSize' => 29, 'maxSize' => 33, 'font' => 'StayPuft.ttf'),
     );
 
     /** Wave configuracion in X and Y axes */
-    public $Yperiod    = 12;
+    public $Yperiod = 12;
     public $Yamplitude = 14;
-    public $Xperiod    = 11;
+    public $Xperiod = 11;
     public $Xamplitude = 5;
 
     /** letter rotation clockwise */
@@ -75,7 +73,6 @@ class JobBoardHumanHelper
     /** GD image */
     public $im;
 
-
     public function __construct($config = array()) {
 
     }
@@ -87,8 +84,8 @@ class JobBoardHumanHelper
         $this->ImageAllocate();
 
         /** Text insertion */
-        $text = $this->getRandomText().' '.$this->getRandomText();
-        $fontcfg  = $this->fonts[array_rand($this->fonts)];
+        $text = $this->getRandomText() . ' ' . $this->getRandomText();
+        $fontcfg = $this->fonts[array_rand($this->fonts)];
         $this->WriteText($text, $fontcfg);
 
         $app = & JFactory::getApplication();
@@ -101,11 +98,10 @@ class JobBoardHumanHelper
         }
         $this->ReduceImage();
 
-
         if ($this->debug) {
-            imagestring($this->im, 1, 1, $this->height-8,
-                "$text {$fontcfg['font']} ".round((microtime(true)-$ini)*1000)."ms",
-                $this->GdFgColor
+            imagestring($this->im, 1, 1, $this->height - 8,
+                        "$text {$fontcfg['font']} " . round((microtime(true) - $ini) * 1000) . "ms",
+                        $this->GdFgColor
             );
         }
 
@@ -114,7 +110,7 @@ class JobBoardHumanHelper
         $this->Cleanup();
     }
 
-     /**
+    /**
      * Creates the image resources
      */
     protected function ImageAllocate() {
@@ -123,44 +119,43 @@ class JobBoardHumanHelper
             imagedestroy($this->im);
         }
 
-        $this->im = imagecreatetruecolor($this->width*$this->scale, $this->height*$this->scale);
+        $this->im = imagecreatetruecolor($this->width * $this->scale, $this->height * $this->scale);
 
         // Background color
         $this->GdBgColor = imagecolorallocate($this->im,
-            $this->backgroundColor[0],
-            $this->backgroundColor[1],
-            $this->backgroundColor[2]
+                                              $this->backgroundColor[0],
+                                              $this->backgroundColor[1],
+                                              $this->backgroundColor[2]
         );
-        imagefilledrectangle($this->im, 0, 0, $this->width*$this->scale, $this->height*$this->scale, $this->GdBgColor);
+        imagefilledrectangle($this->im, 0, 0, $this->width * $this->scale, $this->height * $this->scale, $this->GdBgColor);
 
         // Foreground color
-        $color           = $this->colors[mt_rand(0, sizeof($this->colors)-1)];
+        $color = $this->colors[mt_rand(0, sizeof($this->colors) - 1)];
         $this->GdFgColor = imagecolorallocate($this->im, $color[0], $color[1], $color[2]);
 
         // Shadow color
         if (!empty($this->shadowColor) && is_array($this->shadowColor) && sizeof($this->shadowColor) >= 3) {
             $this->GdShadowColor = imagecolorallocate($this->im,
-                $this->shadowColor[0],
-                $this->shadowColor[1],
-                $this->shadowColor[2]
+                                                      $this->shadowColor[0],
+                                                      $this->shadowColor[1],
+                                                      $this->shadowColor[2]
             );
         }
     }
 
     /**
      * Random text generation
-     *
      * @return string Text
      */
     function getRandomText() {
 
         $length = rand($this->minWordLength, $this->maxWordLength);
-        $words  = "aAbBcCdDeEfFgGhHiIjJlLmMnNoOpPqQrRsStTvVwWyYzZ";
+        $words = "aAbBcCdDeEfFgGhHiIjJlLmMnNoOpPqQrRsStTvVwWyYzZ";
         $vocals = "aeiou";
 
-        $text  = "";
+        $text = "";
         $vocal = rand(0, 1);
-        for ($i=0; $i<$length; $i++) {
+        for ($i = 0; $i < $length; $i++) {
             if ($vocal) {
                 $text .= substr($vocals, mt_rand(0, 4), 1);
             } else {
@@ -168,6 +163,7 @@ class JobBoardHumanHelper
             }
             $vocal = !$vocal;
         }
+
         return $text;
     }
 
@@ -177,34 +173,34 @@ class JobBoardHumanHelper
     protected function WriteText($text, $fontcfg = array()) {
         if (empty($fontcfg)) {
             // Select the font configuration
-            $fontcfg  = $this->fonts[array_rand($this->fonts)];
+            $fontcfg = $this->fonts[array_rand($this->fonts)];
         }
 
         // Full path of font file
-        $fontfile = JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'human'.DS.'fonts'.DS.$fontcfg['font'];
+        $fontfile = JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'human' . DS . 'fonts' . DS . $fontcfg['font'];
 
         /** Increase font-size for shortest words: 9% for each glyp missing */
-        $lettersMissing = $this->maxWordLength-strlen($text);
-        $fontSizefactor = 1+($lettersMissing*0.09);
+        $lettersMissing = $this->maxWordLength - strlen($text);
+        $fontSizefactor = 1 + ($lettersMissing * 0.09);
 
         // Text generation (char by char)
-        $x      = 20*$this->scale;
-        $y      = round(($this->height*27/40)*$this->scale);
+        $x = 20 * $this->scale;
+        $y = round(($this->height * 27 / 40) * $this->scale);
         $length = strlen($text);
-        for ($i=0; $i<$length; $i++) {
-            $degree   = rand($this->maxRotation*-1, $this->maxRotation);
-            $fontsize = rand($fontcfg['minSize'], $fontcfg['maxSize'])*$this->scale*$fontSizefactor;
-            $letter   = substr($text, $i, 1);
+        for ($i = 0; $i < $length; $i++) {
+            $degree = rand($this->maxRotation * -1, $this->maxRotation);
+            $fontsize = rand($fontcfg['minSize'], $fontcfg['maxSize']) * $this->scale * $fontSizefactor;
+            $letter = substr($text, $i, 1);
 
             if ($this->shadowColor) {
                 $coords = imagettftext($this->im, $fontsize, $degree,
-                    $x+$this->scale, $y+$this->scale,
-                    $this->GdShadowColor, $fontfile, $letter);
+                                       $x + $this->scale, $y + $this->scale,
+                                       $this->GdShadowColor, $fontfile, $letter);
             }
             $coords = imagettftext($this->im, $fontsize, $degree,
-                $x, $y,
-                $this->GdFgColor, $fontfile, $letter);
-            $x += ($coords[2]-$x) + ($fontcfg['spacing']*$this->scale);
+                                   $x, $y,
+                                   $this->GdFgColor, $fontfile, $letter);
+            $x += ($coords[2] - $x) + ($fontcfg['spacing'] * $this->scale);
         }
     }
 
@@ -213,34 +209,34 @@ class JobBoardHumanHelper
      */
     protected function WaveImage() {
         // X-axis wave generation
-        $xp = $this->scale*$this->Xperiod*rand(1,3);
+        $xp = $this->scale * $this->Xperiod * rand(1, 3);
         $k = rand(0, 100);
-        for ($i = 0; $i < ($this->width*$this->scale); $i++) {
+        for ($i = 0; $i < ($this->width * $this->scale); $i++) {
             imagecopy($this->im, $this->im,
-                $i-1, sin($k+$i/$xp) * ($this->scale*$this->Xamplitude),
-                $i, 0, 1, $this->height*$this->scale);
+                      $i - 1, sin($k + $i / $xp) * ($this->scale * $this->Xamplitude),
+                      $i, 0, 1, $this->height * $this->scale);
         }
 
         // Y-axis wave generation
         $k = rand(0, 100);
-        $yp = $this->scale*$this->Yperiod*rand(1,2);
-        for ($i = 0; $i < ($this->height*$this->scale); $i++) {
+        $yp = $this->scale * $this->Yperiod * rand(1, 2);
+        for ($i = 0; $i < ($this->height * $this->scale); $i++) {
             imagecopy($this->im, $this->im,
-                sin($k+$i/$yp) * ($this->scale*$this->Yamplitude), $i-1,
-                0, $i, $this->width*$this->scale, 1);
+                      sin($k + $i / $yp) * ($this->scale * $this->Yamplitude), $i - 1,
+                      0, $i, $this->width * $this->scale, 1);
         }
     }
-         
+
     /**
      * Reduce the image to the final size
      */
     protected function ReduceImage() {
-        // Reduzco el tamaño de la imagen
+        // Reduzco el tamaï¿½o de la imagen
         $imResampled = imagecreatetruecolor($this->width, $this->height);
         imagecopyresampled($imResampled, $this->im,
-            0, 0, 0, 0,
-            $this->width, $this->height,
-            $this->width*$this->scale, $this->height*$this->scale
+                           0, 0, 0, 0,
+                           $this->width, $this->height,
+                           $this->width * $this->scale, $this->height * $this->scale
         );
         imagedestroy($this->im);
         $this->im = $imResampled;
@@ -253,13 +249,14 @@ class JobBoardHumanHelper
 
         $document =& JFactory::getDocument();
         if ($this->imageFormat == 'png' && function_exists('imagepng')) {
-           $document->setMimeEncoding('image/png');
+            $document->setMimeEncoding('image/png');
             imagepng($this->im);
         } else {
-           $document->setMimeEncoding('image/jpeg');
+            $document->setMimeEncoding('image/jpeg');
             imagejpeg($this->im, null, 80);
         }
     }
+
     /**
      * Cleanup
      */

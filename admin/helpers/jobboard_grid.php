@@ -1,58 +1,51 @@
 ﻿<?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
 // Protect from unauthorized access
 defined('_JEXEC') or die('Restricted Access');
 
-require_once(JPATH_SITE.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'html'.DS.'grid.php');
-class JobBoardGridHelper extends JHtmlGrid
-{
+require_once(JPATH_SITE . DS . 'libraries' . DS . 'joomla' . DS . 'html' . DS . 'html' . DS . 'grid.php');
 
-	public static function boolean($i, $value, $taskOn = null, $taskOff = null)
-	{
-		// Load the behavior.
-		self::behavior();
+class JobBoardGridHelper extends JHtmlGrid {
 
-		// Build the title.
-		$title = ($value) ? JText::_('JYES') : JText::_('JNO');
-		$title .= '::' . JText::_('JGLOBAL_CLICK_TO_TOGGLE_STATE');
+    public static function boolean($i, $value, $taskOn = null, $taskOff = null) {
+        // Load the behavior.
+        self::behavior();
 
-		// Build the <a> tag.
-		$bool = ($value) ? 'true' : 'false';
-		$task = ($value) ? $taskOff : $taskOn;
-		$toggle = (!$task) ? false : true;
+        // Build the title.
+        $title = ($value) ? JText::_('JYES') : JText::_('JNO');
+        $title .= '::' . JText::_('JGLOBAL_CLICK_TO_TOGGLE_STATE');
 
-		if ($toggle)
-		{
-			$html = '<a class="grid_' . $bool . ' hasTip" title="' . $title . '" rel="{id:\'cb' . $i . '\', task:\'' . $task
-				. '\'}" href="#toggle"></a>';
-		}
-		else
-		{
-			$html = '<a class="grid_' . $bool . '"></a>';
-		}
+        // Build the <a> tag.
+        $bool = ($value) ? 'true' : 'false';
+        $task = ($value) ? $taskOff : $taskOn;
+        $toggle = (!$task) ? false : true;
 
-		return $html;
-	}
-	/**
-	 * Method to build the behavior script and add it to the document head.
-	 *
-	 * @return  void
-	 *
-	 * @since   11.1
-	 */
-	public static function behavior()
-	{
-		static $loaded;
+        if ($toggle) {
+            $html = '<a class="grid_' . $bool . ' hasTip" title="' . $title . '" rel="{id:\'cb' . $i . '\', task:\'' . $task
+                . '\'}" href="#toggle"></a>';
+        } else {
+            $html = '<a class="grid_' . $bool . '"></a>';
+        }
 
-		if (!$loaded)
-		{
-			// Build the behavior script.
-			$js = '
+        return $html;
+    }
+
+    /**
+     * Method to build the behavior script and add it to the document head.
+     * @return  void
+     * @since   11.1
+     */
+    public static function behavior() {
+        static $loaded;
+
+        if (!$loaded) {
+            // Build the behavior script.
+            $js = '
 		window.addEvent(\'domready\', function(){
 			actions = $$(\'a.move_up\');
 			actions.combine($$(\'a.move_down\'));
@@ -81,13 +74,13 @@ class JobBoardGridHelper extends JHtmlGrid
 			});
 		});';
 
-			// Add the behavior to the document head.
-			$document = JFactory::getDocument();
-			$document->addScriptDeclaration($js);
+            // Add the behavior to the document head.
+            $document = JFactory::getDocument();
+            $document->addScriptDeclaration($js);
 
-			$loaded = true;
-		}
-	}
+            $loaded = true;
+        }
+    }
 }
 
 ?>

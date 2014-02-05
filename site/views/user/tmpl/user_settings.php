@@ -1,14 +1,14 @@
 <?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
-defined('_JEXEC') or die('Restricted access');  
+defined('_JEXEC') or die('Restricted access');
 
 ?>
 
 <div class="ovsummary">
-Settings
+    Settings
 </div>

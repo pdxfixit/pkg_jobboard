@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <install version="1.5" method="upgrade" type="plugin" group="search">
-    <name>Job Board - Search</name>
+	<name>Job Board - Search</name>
 	<author>Tandolin</author>
 	<copyright>Tandolin.com</copyright>
 	<license>GNU/GPL v2 or later</license>
 	<authorEmail>info-gp@tandolin.co.za</authorEmail>
 	<creationDate>Mar 2012</creationDate>
-    <authorUrl>www.tandolin.com</authorUrl>
-    <version>1.0.0</version>
-    <description>Search Plugin for Job Board</description>
-    <files>
-        <filename plugin="jobboard">jobboard.php</filename>
+	<authorUrl>www.tandolin.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Search Plugin for Job Board</description>
+	<files>
+		<filename plugin="jobboard">jobboard.php</filename>
 		<filename>index.html</filename>
-    </files>
-    <languages>
-      <language tag="en-GB">languages/en-GB.plg_jobboard_search.ini</language>
+	</files>
+	<languages>
+		<language tag="en-GB">languages/en-GB.plg_jobboard_search.ini</language>
 		<language tag="en-GB">languages/en-GB.plg_jobboard_search.sys.ini</language>
-    </languages>
-    <params>
-    </params>
-    <config>
-    </config>
+	</languages>
+	<params></params>
+	<config></config>
 </install>

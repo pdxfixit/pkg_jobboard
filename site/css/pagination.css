@@ -1,4 +1,3 @@
-
 /**
   @package JobBoard
   @copyright Copyright (c)2010-2012 Tandolin
@@ -14,12 +13,23 @@
     font-size: 0.9em;
     width: auto;
 }
-#jbcontent .jbPagination ul, #jobtable .jbPagination ul, #jbcontent .jbPagination ul li, #jobtable .jbPagination ul li  {display: inline !important}
-#jbcontent .jbPagination ul li, #jobtable .jbPagination ul li {padding-left: 5px !important}
+
+#jbcontent .jbPagination ul, #jobtable .jbPagination ul, #jbcontent .jbPagination ul li, #jobtable .jbPagination ul li {
+    display: inline !important
+}
+
+#jbcontent .jbPagination ul li, #jobtable .jbPagination ul li {
+    padding-left: 5px !important
+}
+
 #jbcontent .jbPagination li a, #jobtable .jbPagination li a, #jbcontent .jbPagination ul li a, #jobtable .jbPagination ul li a {
     border: 1px solid;
-    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
-    -o-border-radius: 3px; -ms-border-radius: 3px; -khtml-border-radius: 3px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -khtml-border-radius: 3px;
     color: black;
     cursor: pointer;
     height: 1.5em;
@@ -29,11 +39,13 @@
     vertical-align: middle;
     white-space: nowrap;
 }
+
 #jbcontent .jbPagination ul li a, #jobtable .jbPagination ul li a {
     border: 1px solid;
     padding: 5px;
     text-decoration: none;
 }
+
 #jbcontent .jbRescounter, #jobtable .jbRescounter {
     float: left;
     font-size: 0.9em;
@@ -43,24 +55,25 @@
 #jbcontent .jbPagination, #jobtable .jbPagination, #jbcontent .jbRescounter, #jobtable .jbRescounter {
     color: #999999;
 }
-#jbcontent .jbPagination li:active a, #jobtable .jbPagination li:active a
-, #jbcontent .jbPagination ul li:active a, #jobtable .jbPagination ul li:active a {
-    background: -moz-linear-gradient(center top , #CCCCCC, #FFFFFF) repeat scroll 0 0 #DDDDDD;
-    background: -webkit-gradient(linear,0% 0%,0% 100%,from(#CCCCCC),to(#FFFFFF));
-    background: -o-gradient(linear,0% 0%,0% 100%,from(#CCCCCC),to(#FFFFFF));
-    background: -khtml-gradient(linear,0% 0%,0% 100%,from(#CCCCCC),to(#FFFFFF));
+
+#jbcontent .jbPagination li:active a, #jobtable .jbPagination li:active a, #jbcontent .jbPagination ul li:active a, #jobtable .jbPagination ul li:active a {
+    background: -moz-linear-gradient(center top, #CCCCCC, #FFFFFF) repeat scroll 0 0 #DDDDDD;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#CCCCCC), to(#FFFFFF));
+    background: -o-gradient(linear, 0% 0%, 0% 100%, from(#CCCCCC), to(#FFFFFF));
+    background: -khtml-gradient(linear, 0% 0%, 0% 100%, from(#CCCCCC), to(#FFFFFF));
     border-color: #999999;
 }
-#jbcontent .jbPagination li a, #jobtable .jbPagination li a
-, #jbcontent .jbPagination ul li a, #jobtable .jbPagination ul li a {
-    background: -moz-linear-gradient(center top , white, #EFEFEF) repeat scroll 0 0 #F6F6F6;
-    background: -webkit-gradient(linear,0% 0%,0% 100%,from(white),to(#EFEFEF));
-    background: -o-gradient(linear,0% 0%,0% 100%,from(white),to(#EFEFEF));
-    background: -khtml-gradient(linear,0% 0%,0% 100%,from(white),to(#EFEFEF));
+
+#jbcontent .jbPagination li a, #jobtable .jbPagination li a, #jbcontent .jbPagination ul li a, #jobtable .jbPagination ul li a {
+    background: -moz-linear-gradient(center top, white, #EFEFEF) repeat scroll 0 0 #F6F6F6;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#EFEFEF));
+    background: -o-gradient(linear, 0% 0%, 0% 100%, from(white), to(#EFEFEF));
+    background: -khtml-gradient(linear, 0% 0%, 0% 100%, from(white), to(#EFEFEF));
     border-color: #CCCCCC;
     color: black;
     text-shadow: 1px 0 1px #FFFFFF;
 }
+
 #jbcontent .jbPagination ul li a, #jobtable .jbPagination ul li a {
     border-color: #EDEDED;
 }

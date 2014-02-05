@@ -1,22 +1,22 @@
 <?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
 defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.model');
 
-class JobboardModelUnsolicited extends JModel
-{
-	var $_data = null;
+class JobboardModelUnsolicited extends JModel {
+
+    var $_data = null;
     var $_id = null;
     var $_option = null;
 
-	function getJobData($id)    {
-           $db = & JFactory :: getDBO();
-           $sql = 'SELECT
+    function getJobData($id) {
+        $db = & JFactory :: getDBO();
+        $sql = 'SELECT
                        j.id
                       , j.post_date
                       , j.job_title
@@ -41,8 +41,10 @@ class JobboardModelUnsolicited extends JModel
                       INNER JOIN #__jobboard_countries AS jc
                           ON (j.country = jc.country_id)
                       WHERE j.id = ' . $id;
-           $db->setQuery($sql);
-           return $db->loadObject();
-       }                                 
+        $db->setQuery($sql);
+
+        return $db->loadObject();
+    }
 }
+
 ?>

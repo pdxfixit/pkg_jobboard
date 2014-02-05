@@ -19,9 +19,9 @@
 		<filename>router.php</filename>
 		<filename>index.htm</filename>
 	</files>
-    <languages folder="site/lang">
-  		<language tag="en-GB">en-GB.com_jobboard.ini</language>
-  	</languages>
+	<languages folder="site/lang">
+		<language tag="en-GB">en-GB.com_jobboard.ini</language>
+	</languages>
 
 	<administration>
 		<menu img="components/com_jobboard/images/jb_main.png" link="option=com_jobboard">COM_JOBBOARD_ADM_MENU_JB</menu>
@@ -54,24 +54,28 @@
 			<filename>uninstall.jobboard.sql</filename>
 			<filename>index.htm</filename>
 		</files>
-      	<languages folder="admin/lang">
-      		<language tag="en-GB">en-GB.com_jobboard.ini</language>
-      		<language tag="en-GB">en-GB.com_jobboard.menu.ini</language>
-      		<language tag="en-GB">en-GB.com_jobboard.sys.ini</language>
-      	</languages>
+		<languages folder="admin/lang">
+			<language tag="en-GB">en-GB.com_jobboard.ini</language>
+			<language tag="en-GB">en-GB.com_jobboard.menu.ini</language>
+			<language tag="en-GB">en-GB.com_jobboard.sys.ini</language>
+		</languages>
 	</administration>
 
 	<installfile>install.jobboard.php</installfile>
-    <uninstallfile>uninstall.jobboard.php</uninstallfile>
+	<uninstallfile>uninstall.jobboard.php</uninstallfile>
 
 	<install>
-		<sql><file driver="mysql" charset="utf8">install.jobboard.sql</file></sql>
+		<sql>
+			<file driver="mysql" charset="utf8">install.jobboard.sql</file>
+		</sql>
 	</install>
 	<uninstall>
-		<sql><file driver="mysql" charset="utf8">uninstall.jobboard.sql</file></sql>
+		<sql>
+			<file driver="mysql" charset="utf8">uninstall.jobboard.sql</file>
+		</sql>
 	</uninstall>
 
-    <!-- Modules -->
+	<!-- Modules -->
 	<modules>
 		<!-- <module module="mod_jobboard_*" publish="true" client="site"/> -->
 		<module module="jobboard_latest" client="site" position="left" />
@@ -79,22 +83,22 @@
 		<module module="jobboard_cattotals" client="site" position="left" />
 	</modules>
 
-    <!-- Plugins -->
+	<!-- Plugins -->
 	<plugins>
-        <plugin plugin="jobboard_schedule" publish="true" group="system" />
-        <plugin plugin="jobboard" publish="true" group="search" />
+		<plugin plugin="jobboard_schedule" publish="true" group="system" />
+		<plugin plugin="jobboard" publish="true" group="search" />
 	</plugins>
 
-    <!-- JoomFish -->
-  	<joomfish>
-        <defn>jobboard_applicants.xml</defn>
-        <defn>jobboard_career_levels.xml</defn>
-        <defn>jobboard_categories.xml</defn>
-        <defn>jobboard_countries.xml</defn>
-        <defn>jobboard_emailmsg.xml</defn>
-        <defn>jobboard_file_uploads.xml</defn>
-        <defn>jobboard_jobs.xml</defn>
-        <defn>jobboard_statuses.xml</defn>
-        <defn>jobboard_unsolicited.xml</defn>
-    </joomfish>
+	<!-- JoomFish -->
+	<joomfish>
+		<defn>jobboard_applicants.xml</defn>
+		<defn>jobboard_career_levels.xml</defn>
+		<defn>jobboard_categories.xml</defn>
+		<defn>jobboard_countries.xml</defn>
+		<defn>jobboard_emailmsg.xml</defn>
+		<defn>jobboard_file_uploads.xml</defn>
+		<defn>jobboard_jobs.xml</defn>
+		<defn>jobboard_statuses.xml</defn>
+		<defn>jobboard_unsolicited.xml</defn>
+	</joomfish>
 </install>

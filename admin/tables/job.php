@@ -1,19 +1,19 @@
 <?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin <http://www.tandolin.com>
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
 defined('_JEXEC') or die('Restricted access');
 
-class TableJob extends JTable
-{
-	var $id = null;
-	var $post_date = null;
-	var $expiry_date = null;
-	var $posted_by = null;
-	var $job_title = null;
+class TableJob extends JTable {
+
+    var $id = null;
+    var $post_date = null;
+    var $expiry_date = null;
+    var $posted_by = null;
+    var $job_title = null;
     var $job_type = null;
     var $category = null;
     var $career_level = null;
@@ -39,9 +39,9 @@ class TableJob extends JTable
     var $default_user_grp = null;
     var $default_empl_grp = null;
 
-	function __construct(&$db)
-	{
-		parent::__construct('#__jobboard_jobs', 'id', $db);
-	}
+    function __construct(&$db) {
+        parent::__construct('#__jobboard_jobs', 'id', $db);
+    }
 }
+
 ?>

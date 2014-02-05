@@ -1,28 +1,26 @@
 <?php
 /**
-  @package JobBoard
-  @copyright Copyright (c)2010-2012 Tandolin
-  @license : GNU General Public License v2 or later
------------------------------------------------------------------------ */
+ * @package   JobBoard
+ * @copyright Copyright (c)2010-2012 Tandolin
+ * @license   : GNU General Public License v2 or later
+ * ----------------------------------------------------------------------- */
 
 // Protect from unauthorized access
 defined('_JEXEC') or die(JText::_('Restricted Access'));
-require_once( JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'jobboard_list.php' );
+require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_list.php');
 jimport('joomla.application.component.controller');
 
-class JobboardControllerRss extends JController
-{
+class JobboardControllerRss extends JController {
+
     /**
-    * constructor
-    */
-	function __construct()
-	{
-		parent::__construct();
+     * constructor
+     */
+    function __construct() {
+        parent::__construct();
     }
 
-    function display()
-    {
-        if(!JobBoardListHelper::rssEnabled()) jexit(JText::_('COM_JOBBOARD_FEEDS_NOACCES') );
+    function display() {
+        if (!JobBoardListHelper::rssEnabled()) jexit(JText::_('COM_JOBBOARD_FEEDS_NOACCES'));
 
         $selcat = JRequest::getInt('selcat', 1);
         $keywd = JRequest::getString('keysrch', '');
@@ -37,7 +35,7 @@ class JobboardControllerRss extends JController
         $_view->assign('keysrch', $keywd);
 
         $_view->display();
-	}
+    }
 }
 
 $controller = new JobboardControllerRss();
