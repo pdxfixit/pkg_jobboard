@@ -189,7 +189,7 @@ class plgSystemJobboard_Schedule extends JPlugin
                $date_now = date("Y-m-d");
 
                foreach ($jobs as $job) {
-                  $success = self::_checkExpired(&$job, &$date_now);
+                  $success = self::_checkExpired($job, $date_now);
                   $success == true? $passed++ : $failed++;
                }
             }
@@ -212,7 +212,7 @@ class plgSystemJobboard_Schedule extends JPlugin
             if ($count_jobs > 0) {
                $date_now = date("Y-m-d");
                foreach ($jobs as $job) {
-                  $success = self::_checkFeatured(&$job, &$date_now, $feature_length);
+                  $success = self::_checkFeatured($job, $date_now, $feature_length);
                   $success == true? $passed++ : $failed++;
                }
             }
@@ -225,7 +225,7 @@ class plgSystemJobboard_Schedule extends JPlugin
          return $success;
       }
 
-      private function _checkExpired($job, $date_now) {
+      private function _checkExpired(&$job, &$date_now) {
 
             $expire_date = strtotime(date("Y-m-d", strtotime($date)) . " +30 days");
 
@@ -240,7 +240,7 @@ class plgSystemJobboard_Schedule extends JPlugin
               }
       }
 
-      private function _checkFeatured($job, $date_now, $feature_length) {
+      private function _checkFeatured(&$job, &$date_now, $feature_length) {
 
           $fdate = date("Y-m-d", strtotime(date("Y-m-d", strtotime($job['post_date'])) . " +".$feature_length." days") );
 
@@ -407,7 +407,7 @@ class plgSystemJobboard_Schedule extends JPlugin
          } else {
            // parse xml and populate job data
             $this->_parseXML($xml_file);
-            $this->_setLastSyncTime($this->_getUnixTime(&$right_now));
+            $this->_setLastSyncTime($this->_getUnixTime($right_now));
          }
       }
 
