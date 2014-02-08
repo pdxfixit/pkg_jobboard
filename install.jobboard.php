@@ -44,7 +44,7 @@ if ($curr_version <> '1.2.5' && $curr_version <> '1.2.6' && $curr_version <> '1.
     tblAddColumn('#__jobboard_config', 'allow_once_off_applications', ' tinyint(1) DEFAULT 0');
     tblAddColumn('#__jobboard_config', 'default_list_layout', ' varchar(16) DEFAULT "list"');
     tblAddColumn('#__jobboard_config', 'distance_unit', ' tinyint(1) DEFAULT 0');
-    tblAddColumn('#__jobboard_config', 'default_distance', " enum('10','15','20','30','50','70','100','300','500','1000','5000','10000') NOT NULL DEFAULT 50");
+    tblAddColumn('#__jobboard_config', 'default_distance', " enum('10','15','20','30','50','70','100','300','500','1000','5000','10000') NOT NULL DEFAULT '50'");
     tblAddColumn('#__jobboard_config', 'enable_post_maps', ' tinyint(1) DEFAULT 1');
     tblAddColumn('#__jobboard_config', 'home_intro_title', ' text');
     tblAddColumn('#__jobboard_config', 'home_intro', ' text');
