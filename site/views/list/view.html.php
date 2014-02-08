@@ -20,10 +20,10 @@ class JobboardViewList extends JView {
 
         $this->data =& $this->get('Data');
 
-        $featured_count = $this->countFeatured(&$this->data);
+        $featured_count = $this->countFeatured($this->data);
         $locsrch = $this->escape($this->locsrch);
         if ($featured_count > 0 && $locsrch <> '') {
-            $this->data = $this->sortFeatured(&$this->data);
+            $this->data = $this->sortFeatured($this->data);
         }
         $this->config = & $this->get('Querycfg', 'Config');
         $this->jobsearch =& $this->get('Search');
@@ -65,7 +65,7 @@ class JobboardViewList extends JView {
         parent::display($tpl);
     }
 
-    function countFeatured($jobs) {
+    function countFeatured(&$jobs) {
         $featured_count = 0;
         foreach ($jobs as $job) {
             if ($job->featured == 1)
@@ -75,7 +75,7 @@ class JobboardViewList extends JView {
         return $featured_count;
     }
 
-    function sortFeatured($jobs) {
+    function sortFeatured(&$jobs) {
         $non_featured = array();
         $featured = array();
         foreach ($jobs as $job) {
