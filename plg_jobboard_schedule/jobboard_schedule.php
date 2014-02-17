@@ -26,10 +26,10 @@ class plgSystemJobboard_Schedule extends JPlugin {
      */
     function plgSystemJobboard_Schedule(& $subject, $config) {
         parent :: __construct($subject, $config);
-        $lang =& JFactory::getLanguage();
+        $lang = JFactory::getLanguage();
         $lang->load('plg_jobboard_schedule', JPATH_ADMINISTRATOR);
 
-        $cfg = & JFactory::getConfig();
+        $cfg = JFactory::getConfig();
         $this->_setConfig($cfg);
         $this->_setTzOffset();
     }
@@ -103,7 +103,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
      * @return assoc schedule parameters
      */
     private function _getSchedConfig() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = "SELECT " . $db->nameQuote('maint_tasks_on') . ",  " . $db->nameQuote('maint_tasks_int_type') . ",  " . $db->nameQuote('maint_tasks_int') . ", " . $db->nameQuote('last_maint_run') . ", " . $db->nameQuote('last_maint_check') . "
                       FROM " . $db->nameQuote('#__jobboard_config') . "
                       WHERE " . $db->nameQuote('id') . " = 1";
@@ -120,7 +120,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
      * @return assoc scheduled tasks
      */
     private function _getSchedTasks() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = "SELECT " . $db->nameQuote('sched_disable_exp') . ",  " . $db->nameQuote('sched_expire_feat') . ",  " . $db->nameQuote('feature_length') . ",  " . $db->nameQuote('sched_backup_data') . ",  " . $db->nameQuote('email_task_results') . "
                       FROM " . $db->nameQuote('#__jobboard_config') . "
                       WHERE " . $db->nameQuote('id') . " = 1";
@@ -163,7 +163,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
     }
 
     private function _getPublishedJobs() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = "SELECT " . $db->nameQuote('id') . ", DATE_FORMAT(" . $db->nameQuote('expiry_date') . ", '%Y-%m-%d') AS expiry_date
                             , " . $db->nameQuote('published') . "
                   FROM " . $db->nameQuote('#__jobboard_jobs') . "
@@ -174,7 +174,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
     }
 
     private function _getFeaturedJobs() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = "SELECT " . $db->nameQuote('id') . ", DATE_FORMAT(" . $db->nameQuote('post_date') . ", '%Y-%m-%d') AS post_date
                   FROM " . $db->nameQuote('#__jobboard_jobs') . "
                   WHERE " . $db->nameQuote('published') . " = 1 AND " . $db->nameQuote('featured') . " = 1 ";
@@ -236,7 +236,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
 
         if ($job['expiry_date'] <= $date_now && $job['published'] == 1) {
 
-            $db = & JFactory::getDBO();
+            $db = JFactory::getDBO();
             $query = 'UPDATE ' . $db->nameQuote('#__jobboard_jobs') . '
                         SET ' . $db->nameQuote('published') . ' = 0
                     WHERE ' . $db->nameQuote('id') . ' = ' . $job['id'];
@@ -252,7 +252,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
 
         if ($fdate <= $date_now) {
 
-            $db = & JFactory::getDBO();
+            $db = JFactory::getDBO();
             $query = 'UPDATE ' . $db->nameQuote('#__jobboard_jobs') . '
                       SET ' . $db->nameQuote('featured') . ' = 0
                   WHERE ' . $db->nameQuote('id') . ' = ' . $job['id'];
@@ -268,7 +268,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
         jimport('joomla.filesystem.file');
         jimport('joomla.utilities.date');
 
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
 
         $table_suffixes = array('applicants', 'bookmarks', 'career_levels', 'categories', 'config',
             'countries', 'cvprofiles', 'departments', 'education', 'emailmsg', 'file_tokens',
@@ -423,7 +423,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
     }
 
     private function _syncJob($job) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SHOW COLUMNS FROM';
         echo '<br />-----------------------------------';
         echo '<br />Syncing ' . $job['TITLE'] . ' ....';
@@ -431,7 +431,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
     }
 
     private function _dbColExists() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SHOW COLUMNS FROM `#__jobboard_config` WHERE FIELD = ' . $db->Quote('last_sync_check');
         $db->setQuery($sql);
         $result = $db->loadAssocList();
@@ -440,7 +440,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
     }
 
     private function _addDbSyncCol() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'ALTER TABLE `#__jobboard_config` ADD ' . $db->nameQuote('last_sync_check') . ' BIGINT NOT NULL DEFAULT 0;';
         $db->setQuery($sql);
 
@@ -452,7 +452,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
     }
 
     private function _setLastRunTime($unix_ts) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'UPDATE ' . $db->nameQuote('#__jobboard_config') . ' SET ' . $db->nameQuote('last_maint_run') . ' = ' . $unix_ts . '
                   WHERE ' . $db->nameQuote('id') . ' = 1';
         $db->setQuery($sql);
@@ -461,7 +461,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
     }
 
     private function _setLastCalcTime($unix_ts) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'UPDATE ' . $db->nameQuote('#__jobboard_config') . ' SET ' . $db->nameQuote('last_maint_check') . ' = ' . $unix_ts . '
                   WHERE ' . $db->nameQuote('id') . ' = 1';
         $db->setQuery($sql);
@@ -471,7 +471,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
 
     private function _getNow() {
         jimport('joomla.utilities.date');
-        $now = & JFactory::getDate();
+        $now = JFactory::getDate();
         $date = new JDate($now->toRFC822(), $this->_timezone_offset);
 
         return $date;
@@ -486,7 +486,7 @@ class plgSystemJobboard_Schedule extends JPlugin {
     }
 
     private function _getAdminDetails() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT ' . $db->nameQuote('organisation') . '
             , ' . $db->nameQuote('from_mail') . ' AS admin_email, ' . $db->nameQuote('reply_to') . ', ' . $db->nameQuote('feature_length') . '
                   FROM ' . $db->nameQuote('#__jobboard_config') . '
