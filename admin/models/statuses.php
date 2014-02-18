@@ -108,7 +108,7 @@ class JobboardModelStatuses extends JModel {
     function _buildQueryOrderBy() { // get the application and DBO
         $app = JFactory::getApplication();
 
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $defaultOrderField = 'id';
         $order = $app->getUserStateFromRequest('com_jobboard.statuses.filterOrder', 'filter_order', $defaultOrderField);
         $orderDirection = $app->getUserStateFromRequest('com_jobboard.statuses.filterOrderDirection', 'filter_order_Dir', 'DESC', 'cmd');
@@ -118,7 +118,7 @@ class JobboardModelStatuses extends JModel {
     }
 
     function deleteStatuses($serialised_id_array) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'DELETE FROM #__jobboard_statuses'
             . ' WHERE id IN ( ' . $serialised_id_array . ' )';
         $db->setQuery($this->_query);

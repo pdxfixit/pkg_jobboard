@@ -14,7 +14,7 @@ class JobboardViewStatusedit extends JView {
 
     function display($tpl = null) {
         $task = JRequest::getVar('task', '');
-        $row =& JTable::getInstance('status', 'Table');
+        $row = JTable::getInstance('status', 'Table');
         $this->assign('jb_render', JobBoardHelper::renderJobBoardx());
         $cid = JRequest::getVar('cid', array(0), '', 'array');
         $id = intval($cid[0]);

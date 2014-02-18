@@ -23,15 +23,15 @@ class JobboardControllerApply extends JController {
         require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_job.php');
         $published = JobBoardJobHelper::jobPublished($id);
 
-        $view =& $this->getView('apply', 'html');
+        $view = $this->getView('apply', 'html');
 
         if ($published) {
             $app = JFactory::getApplication();
             $catid = $app->getUserStateFromRequest('com_jobboard.list.selcat', 'selcat', 1);
 
-            $job_model =& $this->getModel('Apply');
+            $job_model = $this->getModel('Apply');
             $job_data = $job_model->getJobData($id);
-            $config_model =& $this->getModel('Config');
+            $config_model = $this->getModel('Config');
 
             //set the view parameters
             $view->setModel($job_model, true);

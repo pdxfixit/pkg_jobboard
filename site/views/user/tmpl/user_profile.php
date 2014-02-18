@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------- */
 
 defined('_JEXEC') or die('Restricted access');
-$document = & JFactory::getDocument();
+$document = JFactory::getDocument();
 ?>
 <div id="user-profile-header">
     <ul id="ptabs">

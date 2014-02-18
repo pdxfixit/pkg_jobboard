@@ -16,7 +16,7 @@ class JobboardControllerMessageEdit extends JController {
     function save() {
         JRequest::checkToken() or jexit('Invalid Token');
 
-        $row =& JTable::getInstance('Messages', 'Table');
+        $row = JTable::getInstance('Messages', 'Table');
 
         if (!$row->bind(JRequest::get('post'))) {
             JError::raiseError(500, $row->getError());

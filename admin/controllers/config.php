@@ -34,7 +34,7 @@ class JobboardControllerConfig extends JController {
         if ($post['section'] == 'users') {
             $user_groups = $post['group'];
             unset($post['group']);
-            $cfg_model = & $this->getModel('Config');
+            $cfg_model = $this->getModel('Config');
             $user_grp = array();
             foreach ($user_groups as $ug) {
                 $user_grp['id'] = $ug['id'];
@@ -53,7 +53,7 @@ class JobboardControllerConfig extends JController {
             unset($user_grp);
         }
 
-        $row =& JTable::getInstance('Config', 'Table');
+        $row = JTable::getInstance('Config', 'Table');
 
         if (!$row->bind($post)) {
             JError::raiseError(500, $row->getError());
@@ -77,7 +77,7 @@ class JobboardControllerConfig extends JController {
         if ($post['section'] == 'users') {
             $user_groups = $post['group'];
             unset($post['group']);
-            $cfg_model = & $this->getModel('Config');
+            $cfg_model = $this->getModel('Config');
             $user_grp = array();
             foreach ($user_groups as $ug) {
                 $user_grp['id'] = $ug['id'];
@@ -96,7 +96,7 @@ class JobboardControllerConfig extends JController {
             unset($user_grp);
         }
 
-        $row =& JTable::getInstance('Config', 'Table');
+        $row = JTable::getInstance('Config', 'Table');
 
         if (!$row->bind($post) || !$success) {
             JError::raiseError(500, $row->getError());
@@ -123,7 +123,7 @@ class JobboardControllerConfig extends JController {
 
         JobBoardToolbarHelper::setToolbarLinks('config');
 
-        $cfg_model = & $this->getModel('Config');
+        $cfg_model = $this->getModel('Config');
         $depts = $cfg_model->getDepts();
         $countries = $cfg_model->getCountries();
         $jobtypes = $cfg_model->getJobtypes();
@@ -132,7 +132,7 @@ class JobboardControllerConfig extends JController {
         $categories = $cfg_model->getCategories();
         $section = JRequest::getString('section', 'general');
 
-        $view = & $this->getView('config', 'html');
+        $view = $this->getView('config', 'html');
         $view->setModel($cfg_model, true);
         $view->setLayout('config');
         $view->assign('section', $section);
@@ -237,8 +237,8 @@ class JobboardControllerConfig extends JController {
             return;
         }
 
-        $model = & $this->getModel('Config');
-        $db = & JFactory::getDBO();
+        $model = $this->getModel('Config');
+        $db = JFactory::getDBO();
 
         foreach ($db_table_entities as $entity) {
             $tbl_assoc = $this->_parseXMLFile($entity['filename'], $extract_folder);
@@ -285,7 +285,7 @@ class JobboardControllerConfig extends JController {
     }
 
     private function _processRow($ins_sql, $del_sql) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
 
         $db->setQuery($del_sql);
         $db->Query();

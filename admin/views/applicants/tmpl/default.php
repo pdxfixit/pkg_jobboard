@@ -67,7 +67,7 @@ $option = 'com_jobboard';
         $k = 0;
 
         for ($i = 0; $i < $n; $i++) {
-            $row =& $this->rows[$i];
+            $row = $this->rows[$i];
             $checked = JHTML::_('grid.id', $i, $row->id);
             $link = JFilterOutput::ampReplace('index.php?option=' . $option . '&view=applicants&task=edit&cid[]=' . $row->id . '&vcontext=2');
             ?>

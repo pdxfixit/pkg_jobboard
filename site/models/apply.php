@@ -15,7 +15,7 @@ class JobboardModelApply extends JModel {
     var $_option = null;
 
     function getJobData($id) {
-        $db = & JFactory :: getDBO();
+        $db = JFactory :: getDBO();
         $sql = 'SELECT  j.' . $db->nameQuote('id') . '
                       , j.' . $db->nameQuote('post_date') . '
                       , j.' . $db->nameQuote('expiry_date') . '
@@ -54,7 +54,7 @@ class JobboardModelApply extends JModel {
     function getOption($id) {
         $query = 'SELECT option_type FROM #__jobboard_options
                   WHERE id =' . $id;
-        $db =& JFactory::getDBO();
+        $db = JFactory::getDBO();
         $db->setQuery($query);
         $this->_option = $db->loadResult();
 
@@ -62,7 +62,7 @@ class JobboardModelApply extends JModel {
     }
 
     function saveUserApplication($uid, $pid, $jid, $qid) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $query = 'INSERT INTO `#__jobboard_usr_applications` (`user_id`, `job_id`, `cvprof_id`, `status_id`, `qid`, `applied_on`)
                   VALUES (' . $uid . ', ' . $jid . ', ' . $pid . ', 1, ' . $qid . ', UTC_TIMESTAMP) ';
         $db->setQuery($query);
@@ -72,7 +72,7 @@ class JobboardModelApply extends JModel {
     }
 
     function getUserApplications($uid) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $query = 'SELECT
                        a.*,
                        j.`job_title`,
@@ -92,7 +92,7 @@ class JobboardModelApply extends JModel {
     }
 
     function delUserApplication($appl_id, $uid, $qid) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $query = 'DELETE FROM `#__jobboard_usr_applications`
               WHERE `id`=' . $appl_id . ' AND `user_id` = ' . $uid;
         $db->setQuery($query);
@@ -115,7 +115,7 @@ class JobboardModelApply extends JModel {
      * @return boolean
      */
     function incrApplications($jid) {
-        $db = & JFactory :: getDBO();
+        $db = JFactory :: getDBO();
         $query = 'UPDATE #__jobboard_jobs SET
                 num_applications =  num_applications + 1
                 WHERE id=' . $jid;
@@ -143,7 +143,7 @@ class JobboardModelApply extends JModel {
      * @return AssocList
      */
     function getSiteApplicationsForJob($jid) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT * FROM `#__jobboard_applicants`
                         WHERE `job_id` = ' . $jid;
         $db->setQuery($sql);

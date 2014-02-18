@@ -108,7 +108,7 @@ class JobBoardHelper {
     }
 
     static function matchHumanCode($string) {
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
 
         return (strlen($string) == 0 || $string != $app->getUserState('com_jobboard.humanv')) ? true : false;
     }
@@ -122,7 +122,7 @@ class JobBoardHelper {
     }
 
     static function getCountryName($id) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('country_name') . ' FROM ' . $db->nameQuote('#__jobboard_countries') . '
             WHERE ' . $db->nameQuote('country_id') . ' = ' . $id;
         $db->setQuery($query);
@@ -132,7 +132,7 @@ class JobBoardHelper {
     }
 
     static function useSecure() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('secure_login') . ' FROM ' . $db->nameQuote('#__jobboard_config') . '
             WHERE ' . $db->nameQuote('id') . ' = 1';
         $db->setQuery($query);
@@ -141,7 +141,7 @@ class JobBoardHelper {
     }
 
     static function allowRegistration() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('allow_registration') . ' FROM ' . $db->nameQuote('#__jobboard_config') . '
             WHERE ' . $db->nameQuote('id') . ' = 1';
         $db->setQuery($query);
@@ -150,7 +150,7 @@ class JobBoardHelper {
     }
 
     static function verifyLogin() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('captcha_login') . ' FROM ' . $db->nameQuote('#__jobboard_config') . '
             WHERE ' . $db->nameQuote('id') . ' = 1';
         $db->setQuery($query);
@@ -159,7 +159,7 @@ class JobBoardHelper {
     }
 
     static function verifyHumans() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('captcha_public') . ' FROM ' . $db->nameQuote('#__jobboard_config') . '
             WHERE ' . $db->nameQuote('id') . ' = 1';
         $db->setQuery($query);
@@ -169,9 +169,9 @@ class JobBoardHelper {
 
     static function dispatchEmail($from, $fromname, $to_email, $subject, $body, $attachment = null) {
         if (!version_compare(JVERSION, '1.6.0', 'ge'))
-            $sendresult =& JUtility :: sendMail($from, $fromname, $to_email, $subject, $body, null, null, null, $attachment);
+            $sendresult = JUtility :: sendMail($from, $fromname, $to_email, $subject, $body, null, null, null, $attachment);
         else
-            $sendresult =& JFactory::getMailer()->sendMail($from, $fromname, $to_email, $subject, $body, null, null, null, $attachment);
+            $sendresult = JFactory::getMailer()->sendMail($from, $fromname, $to_email, $subject, $body, null, null, null, $attachment);
 
         return $sendresult;
     }

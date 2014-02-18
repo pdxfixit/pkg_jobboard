@@ -18,7 +18,7 @@ class JobboardModelRss extends JModel {
 
     function getCatname($catid) {
         // get category name
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $query = 'SELECT ' . $db->nameQuote('type') . '
             FROM ' . $db->nameQuote('#__jobboard_categories') . '
             WHERE ' . $db->nameQuote('id') . ' = ' . $catid;
@@ -28,7 +28,7 @@ class JobboardModelRss extends JModel {
     }
 
     function getLocConf() {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         // get "show location" settings:
         $query = 'SELECT ' . $db->nameQuote('use_location') . '
         FROM ' . $db->nameQuote('#__jobboard_config') . '

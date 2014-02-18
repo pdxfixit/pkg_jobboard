@@ -14,10 +14,10 @@ class JobboardViewCategory extends JView {
     function display($tpl = null) {
         $app = JFactory::getApplication();
 
-        $rows =& $this->get('data');
-        $this->search =& $this->get('search');
+        $rows = $this->get('data');
+        $this->search = $this->get('search');
         $this->search = !empty($this->search) ? $this->escape($this->search) : $this->search;
-        $pagination =& $this->get('pagination');
+        $pagination = $this->get('pagination');
         $this->assignRef('rows', $rows);
         $this->assignRef('pagination', $pagination);
         $this->assign('jb_render', JobBoardHelper::renderJobBoardx());

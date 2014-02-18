@@ -34,7 +34,7 @@ class JobboardModelUnsolicitedEdit extends JModel {
 
     function getData() {
         if (empty($this->_data)) {
-            $db = & $this->getDBO();
+            $db = $this->getDBO();
             $this->_query = 'SELECT *
                         FROM ' . $db->nameQuote('#__jobboard_unsolicited') . '
                             WHERE ' . $db->nameQuote('id') . ' = ' . $this->_id;

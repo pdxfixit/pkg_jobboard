@@ -29,7 +29,7 @@ class JobboardControllerStatuses extends JController {
         $cid = JRequest::getVar('cid', array(), '', 'array');
         JArrayHelper::toInteger($cid);
 
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
         $this->setToolbar();
@@ -50,7 +50,7 @@ class JobboardControllerStatuses extends JController {
 
                 $success_msg = ($count_cid == 1) ? JText::_('COM_JOBBOARD_STATUS_DELETED') : JText::_('COM_JOBBOARD_STATUSES_DELETED');
                 $cids = implode(',', $cid);
-                $jobs_model = & $this->getModel('Statuses');
+                $jobs_model = $this->getModel('Statuses');
                 $delete_result = $jobs_model->deleteStatuses($cids);
                 if ($delete_result <> true) {
                     $this->setRedirect('index.php?option=com_jobboard&view=statuses', $delete_result);
@@ -67,7 +67,7 @@ class JobboardControllerStatuses extends JController {
                     $unDeletableCount = count($un_deletable);
                     $success_msg = (($count_cid == 2 && $unDeletableCount == 1) || ($count_cid <= 3 && $unDeletableCount > 1)) ? JText::_('COM_JOBBOARD_STATUS_DELETED') : JText::_('COM_JOBBOARD_STATUSES_DELETED');
                     $cids = implode(',', $cid);
-                    $jobs_model = & $this->getModel('Statuses');
+                    $jobs_model = $this->getModel('Statuses');
                     $delete_result = $jobs_model->deleteStatuses($cids);
                     if ($unDeletableCount > 1) {
                         for ($i = 1; $i < $unDeletableCount; $i++) {
@@ -100,7 +100,7 @@ class JobboardControllerStatuses extends JController {
     }
 
     function edit() {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-applicant_details {background-image:url(components/com_jobboard/images/applicant_details.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -110,7 +110,7 @@ class JobboardControllerStatuses extends JController {
         JToolBarHelper::save();
         JToolBarHelper::cancel();
         /*
-         $status_model =& $this->getModel('Status');
+         $status_model = $this->getModel('Status');
          $statuses = $status_model->getStatuses();
          $departments = $status_model->getDepartments();
          JRequest::setVar('statuses', $statuses);
@@ -122,7 +122,7 @@ class JobboardControllerStatuses extends JController {
 
     function display() //display list of all users
     {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_applicants {background-image:url(components/com_jobboard/images/job_applicants.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
         $this->setToolbar();

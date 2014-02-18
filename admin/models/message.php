@@ -50,7 +50,7 @@ class JobboardModelMessage extends JModel {
      */
     function saveMessage($message) {
 
-        $db = & JFactory :: getDBO();
+        $db = JFactory :: getDBO();
         $query = 'INSERT INTO #__jobboard_msg
                 (job_id, sender_name, sender_email, recipient_list, message, send_date)
                 VALUES ("' . $db->getEscaped($message->job_id) . '"
@@ -67,7 +67,7 @@ class JobboardModelMessage extends JModel {
     }
 
     function getMsgID($type) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $query = 'SELECT id
                 FROM #__jobboard_emailmsg
                 WHERE ' . $db->getEscaped("type") . ' = "' . $db->getEscaped($type) . '"';
@@ -79,7 +79,7 @@ class JobboardModelMessage extends JModel {
 
     function getMsg($id) {
 
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $query = 'SELECT ' . $db->getEscaped("subject") . ', ' . $db->getEscaped("body") . '
                 FROM #__jobboard_emailmsg
                 WHERE id = ' . $id;

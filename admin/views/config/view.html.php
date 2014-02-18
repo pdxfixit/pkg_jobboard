@@ -22,7 +22,7 @@ class JobboardViewConfig extends JView {
         $task = JRequest::getVar('task', '');
 
         //get config data
-        $row =& JTable::getInstance('Config', 'Table');
+        $row = JTable::getInstance('Config', 'Table');
         $id = 1; //there is only one config record, with the id=1 (set during installation) so we don't need to look at the cid even though it might be sent
 
         if (!$row->load($id)) {
@@ -36,7 +36,7 @@ class JobboardViewConfig extends JView {
 
                 break;
             case 'users':
-                $this->user_groups = & $this->get('UserGroups');
+                $this->user_groups = $this->get('UserGroups');
                 break;
             case 'jobs':
                 $this->dist_array = array(10, 15, 20, 30, 50, 70, 100, 300, 500, 1000, 5000, 10000);

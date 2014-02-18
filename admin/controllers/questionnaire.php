@@ -23,9 +23,9 @@ class JobboardControllerQuestionnaire extends JController {
 
     function display() {
         $qid = JRequest::getInt('id');
-        $view =& $this->getView('questionnaire', 'html');
+        $view = $this->getView('questionnaire', 'html');
         if ($qid > 0) {
-            $q_data = & JTable::getInstance('Questionnaire', 'Table');
+            $q_data = JTable::getInstance('Questionnaire', 'Table');
             $q_data->load($qid);
             $fields = json_decode($q_data->fields);
             if (!is_object($fields)) {

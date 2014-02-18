@@ -33,7 +33,7 @@ if (JFile::exists($path)) {
     require_once($path);
     if (!version_compare(JVERSION, '1.6.0', 'ge')) {
         // Load Jobboard language file
-        $lang = & JFactory::getLanguage();
+        $lang = JFactory::getLanguage();
         $lang->load('com_jobboard.sys', JPATH_ADMINISTRATOR);
     }
 } else {

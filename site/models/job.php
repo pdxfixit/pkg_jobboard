@@ -34,7 +34,7 @@ class JobboardModelJob extends JModel {
     }
 
     function getData($id) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT  j.' . $db->nameQuote('id') . '
                       , j.' . $db->nameQuote('post_date') . '
                       , j.' . $db->nameQuote('expiry_date') . '
@@ -79,7 +79,7 @@ class JobboardModelJob extends JModel {
     }
 
     function getJobdata($id) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT j.job_title
                       , j.city
                   FROM
@@ -91,7 +91,7 @@ class JobboardModelJob extends JModel {
     }
 
     function getTopfive() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT  SELECT  j.id
                       , j.job_title
                       , j.city
@@ -105,7 +105,7 @@ class JobboardModelJob extends JModel {
     }
 
     function getLatestfive() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT  j.id
                       , j.job_title
                       , j.city
@@ -119,7 +119,7 @@ class JobboardModelJob extends JModel {
     }
 
     function getDefaultprefix() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT  j.id
                       , j.job_title
                       , j.city

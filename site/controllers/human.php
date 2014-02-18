@@ -21,7 +21,7 @@ class JobboardControllerHuman extends JController {
     function display() {
 
         require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_human.php');
-        $view =& $this->getView('human', 'raw');
+        $view = $this->getView('human', 'raw');
 
         $view->display();
     }

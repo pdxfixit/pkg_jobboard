@@ -108,7 +108,7 @@ class JobboardModelCategory extends JModel {
     function _buildQueryOrderBy() { // get the application and DBO
         $app = JFactory::getApplication();
 
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $defaultOrderField = 'type';
         $order = $app->getUserStateFromRequest('com_jobboard.category.filterOrder', 'filter_order', $defaultOrderField);
         $order = ($order == 'status') ? 'enabled' : $order;
@@ -119,7 +119,7 @@ class JobboardModelCategory extends JModel {
     }
 
     function deleteCategories($serialised_id_array) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'DELETE FROM #__jobboard_categories'
             . ' WHERE id IN ( ' . $serialised_id_array . ' )';
         $db->setQuery($this->_query);
@@ -131,7 +131,7 @@ class JobboardModelCategory extends JModel {
 
     function setPublishStatus($status, $cids) {
 
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $query = 'UPDATE #__jobboard_categories
 					 SET enabled = ' . (int)$status . '
 					 WHERE id IN ( ' . $cids . '  )';

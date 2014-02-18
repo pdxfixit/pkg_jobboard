@@ -40,7 +40,7 @@ class JobboardModelUapplicant extends JModel {
      * @return assoc
      */
     function getApplication($aid, $site = false) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         if ($site <> true)
             $query = 'SELECT `id`, `status_id`, `last_modified`, `admin_notes`
                     FROM `#__jobboard_usr_applications`
@@ -62,7 +62,7 @@ class JobboardModelUapplicant extends JModel {
      * @return assoc
      */
     function getQuestionnaire($qid) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `name`, `title`, `created_by`, `description`, `fields`  FROM  `#__jobboard_questionnaires`
                      WHERE `qid` = ' . $qid;
         $db->setQuery($sql);
@@ -78,7 +78,7 @@ class JobboardModelUapplicant extends JModel {
      * @return string
      */
     function getQuestionnaireFields($qid) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `fields` FROM  `#__jobboard_questionnaires`
                      WHERE `qid` = ' . $qid;
         $db->setQuery($sql);
@@ -94,7 +94,7 @@ class JobboardModelUapplicant extends JModel {
      * @return assoc
      */
     function getApplicantQanswers($qid, $aid) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $query = 'SELECT *
                     FROM `#__jobboard_q' . $qid . '`
                     WHERE `appl_id`=' . $aid;
@@ -111,7 +111,7 @@ class JobboardModelUapplicant extends JModel {
      * @return boolean
      */
     function updApplicantQanswers($qid, $aid, $data) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'UPDATE `#__jobboard_q' . $qid . '` SET ';
         foreach ($data as $fieldset) {
             $curr_col = $fieldset[2] == 'text' ? $db->Quote($fieldset[1]) : $fieldset[1];
@@ -132,7 +132,7 @@ class JobboardModelUapplicant extends JModel {
      * @return string
      */
     function getApplJobTitle($jid) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $query = 'SELECT `job_title`
                   FROM `#__jobboard_jobs`
                   WHERE `id`=' . $jid;
@@ -149,7 +149,7 @@ class JobboardModelUapplicant extends JModel {
      * @return list of objects
      */
     function getStatuses() {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $sql = "SELECT * FROM `#__jobboard_statuses`";
         $db->setQuery($sql);
 
@@ -164,7 +164,7 @@ class JobboardModelUapplicant extends JModel {
      * @return string
      */
     function getCvProfileName($pid, $uid) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `profile_name`
                         FROM `#__jobboard_cvprofiles`
                         WHERE `id` = ' . $pid . ' AND `user_id` = ' . $uid;
@@ -181,7 +181,7 @@ class JobboardModelUapplicant extends JModel {
      * @return boolean
      */
     function saveApplication($aid, $data) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $query = 'UPDATE `#__jobboard_usr_applications` SET
                   `status_id` = ' . $data['status'] . ',
                   `last_modified` = UTC_TIMESTAMP,
@@ -193,7 +193,7 @@ class JobboardModelUapplicant extends JModel {
     }
 
     function deleteApplicants($serialised_id_array) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'DELETE FROM #__jobboard_applicants'
             . ' WHERE id IN ( ' . $serialised_id_array . ' )';
         $db->setQuery($this->_query);
@@ -211,7 +211,7 @@ class JobboardModelUapplicant extends JModel {
      * @return object
      */
     function getCvFile($fid, $pid, $uid = 0) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         switch ($uid) {
             case 0 :
                 $sql = 'SELECT `filetitle`, `filepath`, `filename`, `filetype`
@@ -238,7 +238,7 @@ class JobboardModelUapplicant extends JModel {
      * @return object
      */
     function getSiteCv($fid) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `filename`, `file_hash`
                     FROM `#__jobboard_applicants`
                     WHERE `id` = ' . $fid;
@@ -255,7 +255,7 @@ class JobboardModelUapplicant extends JModel {
      * @return assoc
      */
     function getApplIds($aid) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `user_id` AS sid, `cvprof_id` AS pid
                         FROM `#__jobboard_usr_applications`
                         WHERE `id` = ' . $aid;

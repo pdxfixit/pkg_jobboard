@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------- */
 
 defined('_JEXEC') or die('Restricted access');
-$document = & JFactory::getDocument();
+$document = JFactory::getDocument();
 $document->setTitle(JText::_('COM_JOBBOARD_CVPROF') . ': ' . ucfirst($this->cv_data->profile_name));
 ?>
     <div class="widecol">

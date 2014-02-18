@@ -35,7 +35,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT * FROM `#__jobboard_config`
                       WHERE `id` = 1';
         $db->setQuery($sql);
@@ -45,7 +45,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getJobConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `allow_applications`, `show_social`, `show_viewcount`,
                   `show_applcount`, `show_job_summary`, `send_tofriend`, `long_date_format`,
                   `jobtype_coloring`, `use_location`, `social_icon_style`, `allow_once_off_applications`, `enable_post_maps`
@@ -57,7 +57,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getApplyConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `allow_once_off_applications`, `appl_job_summary`, `show_applcount`, `long_date_format`, `jobtype_coloring`, `use_location`  FROM `#__jobboard_config`
                       WHERE `id` = 1';
         $db->setQuery($sql);
@@ -67,7 +67,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getShareConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `send_tofriend`, `sharing_job_summary`, `long_date_format`, `jobtype_coloring`, `use_location` FROM `#__jobboard_config`
                       WHERE `id` = 1';
         $db->setQuery($sql);
@@ -77,7 +77,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getUnsolConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `allow_unsolicited` FROM `#__jobboard_config`
                       WHERE `id` = 1';
         $db->setQuery($sql);
@@ -87,7 +87,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getQuerycfg() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `default_post_range`, `allow_unsolicited`, `jobtype_coloring`, `use_location`, `distance_unit`, `default_distance`, `long_date_format` FROM `#__jobboard_config`
                       WHERE `id` = ' . $this->_id;
         $db->setQuery($sql);
@@ -97,7 +97,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getDateRangeCfg() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `default_post_range` FROM `#__jobboard_config`
                       WHERE `id` = ' . $this->_id;
         $db->setQuery($sql);
@@ -106,7 +106,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getListcfg() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `default_list_layout` FROM `#__jobboard_config`
                       WHERE `id` = 1';
         $db->setQuery($sql);
@@ -115,7 +115,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getdefaultCat() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `default_category` FROM `#__jobboard_config`
                       WHERE `id` = 1';
         $db->setQuery($sql);
@@ -124,7 +124,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getLocCfg() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `use_location`, `distance_unit`, `default_distance`
                   FROM
                       `#__jobboard_config`';

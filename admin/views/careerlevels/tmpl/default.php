@@ -37,7 +37,7 @@ $option = 'com_jobboard';
         <?php
         $k = 0;
         for ($i = 0; $i < $n; $i++) {
-            $row =& $this->rows[$i];
+            $row = $this->rows[$i];
             $checked = JHTML::_('grid.id', $i, $row->id);
             $link = JFilterOutput::ampReplace('index.php?option=' . $option . '&view=careerlevels&task=edit&cid[]=' . $row->id);
             ?>

@@ -88,7 +88,7 @@ class JobBoardHumanHelper {
         $fontcfg = $this->fonts[array_rand($this->fonts)];
         $this->WriteText($text, $fontcfg);
 
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         $app->setUserState('com_jobboard.humanv', $text, 'string');
 
         /** Transformations */
@@ -247,7 +247,7 @@ class JobBoardHumanHelper {
      */
     protected function WriteImage() {
 
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         if ($this->imageFormat == 'png' && function_exists('imagepng')) {
             $document->setMimeEncoding('image/png');
             imagepng($this->im);

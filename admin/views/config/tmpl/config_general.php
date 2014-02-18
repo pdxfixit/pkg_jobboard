@@ -8,7 +8,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 ?>
-<?php $editor = & JFactory :: getEditor(); ?>
+<?php $editor = JFactory :: getEditor(); ?>
 <h3><?php echo JText::_('COM_JOBBOARD_GENERAL_CONFIG'); ?></h3>
 <div style="width:100%">
     <table class="admintable config left">

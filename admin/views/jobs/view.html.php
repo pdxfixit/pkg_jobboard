@@ -15,10 +15,10 @@ class JobboardViewJobs extends JView {
     function display($tpl = null) {
         $app = JFactory::getApplication();
 
-        $rows =& $this->get('data');
-        $pagination =& $this->get('pagination');
-        $this->search =& $this->get('search');
-        $this->config =& $this->get('ListConfig');
+        $rows = $this->get('data');
+        $pagination = $this->get('pagination');
+        $this->search = $this->get('search');
+        $this->config = $this->get('ListConfig');
         $this->search = !empty($this->search) ? $this->escape($this->search) : $this->search;
         $this->assignRef('rows', $rows);
         $this->assignRef('pagination', $pagination);

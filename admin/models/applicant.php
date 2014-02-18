@@ -82,7 +82,7 @@ class JobboardModelApplicant extends JModel {
     }
 
     function save($applicant) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = "UPDATE #__jobboard_applicants
                      SET last_updated = UTC_TIMESTAMP
                      , first_name ='" . $db->getEscaped($applicant->first_name, true) . "'
@@ -105,7 +105,7 @@ class JobboardModelApplicant extends JModel {
     }
 
     function savenew($applicant) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = "INSERT INTO #__jobboard_jobs
                     (job_title, job_type, career_level, education, positions, country, department, published, city, description, duties)
                      VALUES ('" . $db->getEscaped($applicant->job_title, true) . "'
@@ -126,7 +126,7 @@ class JobboardModelApplicant extends JModel {
     }
 
     function deleteApplicants($serialised_id_array) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'DELETE FROM #__jobboard_applicants'
             . ' WHERE id IN ( ' . $serialised_id_array . ' )';
         $db->setQuery($this->_query);

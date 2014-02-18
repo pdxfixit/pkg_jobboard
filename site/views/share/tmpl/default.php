@@ -7,7 +7,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 ?>
-<?php $user = & JFactory::getUser() ?>
+<?php $user = JFactory::getUser() ?>
     <!-- CSS -->
 <?php JHTML::_('stylesheet', 'base.css', 'components/com_jobboard/css/') ?>
 <?php JHTML::_('stylesheet', 'share.css', 'components/com_jobboard/css/') ?>
@@ -80,7 +80,7 @@ defined('_JEXEC') or die('Restricted access');
     </div>
 <?php else : ?>
     <?php if ($this->config->send_tofriend == 0) : ?>
-        <?php $app = & JFactory::getApplication(); ?>
+        <?php $app = JFactory::getApplication(); ?>
         <?php return $app->redirect('index.php?option=com_jobboard&view=job&id=' . $this->id . '&Itemid=' . $this->itemid, JText::_('SHARING_NOT_ALLOWED'), 'error'); ?>
     <?php endif ?>
     <?php if ($this->config->jobtype_coloring == 1) : ?>

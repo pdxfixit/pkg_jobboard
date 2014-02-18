@@ -48,7 +48,7 @@ class JobboardControllerJobboard extends JController {
         JRequest::setVar('ref_num', $ref_num);
         JRequest::setVar('limitstart', 0);
 
-        $config_model =& $this->getModel('Config');
+        $config_model = $this->getModel('Config');
         $default_daterange = $config_model->getDateRangeCfg();
         $daterange = $app->getUserStateFromRequest("com_jobboard.daterange", 'daterange', $default_daterange, 'int');
         $country_id = $app->getUserStateFromRequest('com_jobboard.list.country_id', 'country_id', 0, 'int');
@@ -75,11 +75,11 @@ class JobboardControllerJobboard extends JController {
 
         $app->setUserState("com_jobboard.sel_distance", null, 'int');
 
-        $cat_model =& $this->getModel('List');
-        $board_model =& $this->getModel('Jobboard');
+        $cat_model = $this->getModel('List');
+        $board_model = $this->getModel('Jobboard');
         $intro_vars = $board_model->getIntroConfig();
 
-        $view =& $this->getView('jobboard', 'html');
+        $view = $this->getView('jobboard', 'html');
 
         $view->assign('selcat', $selcat);
         $view->assign('keysrch', $keysrch);
@@ -104,7 +104,7 @@ class JobboardControllerJobboard extends JController {
         $token = sprintf(
             '%02x%04x%03x%05x', mt_rand(), mt_rand(0, 90), bindec(substr_replace(sprintf('%016b', mt_rand(0, 90)), '0100', 11, 4)), mt_rand()
         );
-        $user_model =& $this->getModel('User');
+        $user_model = $this->getModel('User');
 
     }
 
@@ -113,7 +113,7 @@ class JobboardControllerJobboard extends JController {
         $file_id = JRequest::getInt('fid');
         $token = JRequest::getString('tkn');
 
-        $user_model =& $this->getModel('User');
+        $user_model = $this->getModel('User');
 
         /* check token Validity */
         if (!$token_info = $user_model->getTokenInfo($token)) {
@@ -153,10 +153,10 @@ class JobboardControllerJobboard extends JController {
 
             }
 
-            $tokens =& JTable::getInstance('Token', 'Table');
+            $tokens = JTable::getInstance('Token', 'Table');
             $tokens->hit(intval($token_info['id']));
 
-            $view =& $this->getView('user', 'file');
+            $view = $this->getView('user', 'file');
             $view->assign('file', $filename);
             $view->assign('filetype', $file->filetype);
 
@@ -167,7 +167,7 @@ class JobboardControllerJobboard extends JController {
 
     function authenticateUser() {
 
-        $view =& $this->getView('member', 'html');
+        $view = $this->getView('member', 'html');
         //$view->assign('file', $filename);
         //$view->assign('filetype', $file->filetype);
 
@@ -186,7 +186,7 @@ class JobboardControllerJobboard extends JController {
         $app->setUserState('com_jobboard.extlist.limitstart', $post['limitstart'], 'int');
         $app->setUserState('com_jobboard.extlist.limit', $post['limit'], 'int');
         $results = array();
-        $model = & $this->getModel('Extlist');
+        $model = $this->getModel('Extlist');
         $results['data'] = $model->getData();
         $results['pagination'] = $model->getPaginationVars();
         $this->_returnJSON($results);
@@ -194,10 +194,10 @@ class JobboardControllerJobboard extends JController {
 
     private function _returnJSON(&$results) {
 
-        $view =& $this->getView('extlist', 'json');
+        $view = $this->getView('extlist', 'json');
         $view->assignRef('data', $results);
-        /* $document =& JFactory::getDocument();
-         $doc = & JDocument::getInstance('json');
+        /* $document = JFactory::getDocument();
+         $doc = JDocument::getInstance('json');
          $view->assignRef('doc', $doc);*/
 
         $view->display();

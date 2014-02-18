@@ -54,7 +54,7 @@ class plgSearchJobboard extends JPlugin {
             return array();
         }
 
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
 
         $selcat = $app->getUserState('com_jobboard.list.selcat', 1, 'int');
         $country = $app->getUserState('com_jobboard.list.country_id', 0, 'int');
@@ -121,7 +121,7 @@ class plgSearchJobboard extends JPlugin {
 
         JModel::addIncludePath(JPATH_SITE . DS . 'components' . DS . 'com_jobboard' . DS . 'models');
 
-        $model = & JModel::getInstance('List', 'JobboardModel');
+        $model = JModel::getInstance('List', 'JobboardModel');
 
         $model->setState('layout', 'list');
         $model->setState('filter_job_type', array());

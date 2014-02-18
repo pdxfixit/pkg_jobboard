@@ -6,9 +6,9 @@
  * ----------------------------------------------------------------------- */
 
 defined('_JEXEC') or die('Restricted access');
-$user = & JFactory::getUser();
+$user = JFactory::getUser();
 if ($this->config->allow_unsolicited == 0) {
-    $app = & JFactory::getApplication();
+    $app = JFactory::getApplication();
 
     return $app->redirect('index.php?option=com_jobboard&Itemid=' . $this->itemid, JText::_('UNSOLAPPL_NOT_ALLOWED'), 'error');
 }

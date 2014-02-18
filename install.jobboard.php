@@ -12,17 +12,17 @@ jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 
 // Load Jobboard language file
-$lang = & JFactory::getLanguage();
+$lang = JFactory::getLanguage();
 $lang->load('com_jobboard');
 $src = $this->parent->getPath('source');
-$db = & JFactory::getDBO();
+$db = JFactory::getDBO();
 
 $status = new JObject();
 $status->modules = array();
 $status->plugins = array();
 
 // Database upgrade
-$db = & JFactory::getDBO();
+$db = JFactory::getDBO();
 
 /*always try to add the version column */
 tblAddColumn('#__jobboard_config', 'release_ver', 'TEXT NOT NULL');
@@ -183,11 +183,11 @@ $curr_version = tblCheckColumnValue('#__jobboard_config', 'release_ver', ' WHERE
  ******************************/
 
 if (version_compare(JVERSION, '1.6.0', 'ge')) {
-    $modules = & $this->manifest->xpath('modules/module');
+    $modules = $this->manifest->xpath('modules/module');
     $children = $modules;
     $is_go = true;
 } else {
-    $modules = & $this->manifest->getElementByPath('modules');
+    $modules = $this->manifest->getElementByPath('modules');
     $is_go = is_a($modules, 'JSimpleXMLElement') && count($modules->children()) ? true : false;
     if ($is_go)
         $children = $modules->children();
@@ -238,11 +238,11 @@ if ($is_go) {
  * *****************************/
 
 if (version_compare(JVERSION, '1.6.0', 'ge')) {
-    $plugins = & $this->manifest->xpath('plugins/plugin');
+    $plugins = $this->manifest->xpath('plugins/plugin');
     $children = $plugins;
     $is_go = true;
 } else {
-    $plugins = & $this->manifest->getElementByPath('plugins');
+    $plugins = $this->manifest->getElementByPath('plugins');
     $is_go = is_a($plugins, 'JSimpleXMLElement') && count($plugins->children()) ? true : false;
     if ($is_go)
         $children = $plugins->children();
@@ -295,16 +295,16 @@ if ($is_go) {
  * Multi-languge (JoomFish)
  * *****************************/
 
-$app = & JFactory::getApplication();
+$app = JFactory::getApplication();
 if (JFolder::exists(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_joomfish' . DS . 'contentelements')) {
 
     if (version_compare(JVERSION, '1.6.0', 'ge')) {
-        $elements = & $this->manifest->xpath('joomfish/defn');
+        $elements = $this->manifest->xpath('joomfish/defn');
         foreach ($elements as $element) {
             JFile::copy($src . DS . 'joomfish' . DS . 'contentelements' . DS . $element->data(), JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_joomfish' . DS . 'contentelements' . DS . $element->data());
         }
     } else {
-        $elements = & $this->manifest->getElementByPath('joomfish');
+        $elements = $this->manifest->getElementByPath('joomfish');
         if (is_a($elements, 'JSimpleXMLElement') && count($elements->children())) {
             foreach ($elements->children() as $element) {
                 JFile::copy($src . DS . 'joomfish' . DS . 'contentelements' . DS . $element->data(), JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_joomfish' . DS . 'contentelements' . DS . $element->data());
@@ -387,7 +387,7 @@ if (JFolder::exists(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_joomfish
 
 /* Add column to existing table */
 function tblAddColumn($tbl, $col, $defns) {
-    $db =& JFactory::getDBO();
+    $db = JFactory::getDBO();
 
     // php doesn't throw an error here if the column already exists (unlike the sql install script)
     $query = "ALTER TABLE `" . $tbl . "` ADD `" . $col . "` " . $defns;
@@ -398,7 +398,7 @@ function tblAddColumn($tbl, $col, $defns) {
 
 /* Modify existing column properties */
 function tblModifyColumn($tbl, $col, $defns) {
-    $db =& JFactory::getDBO();
+    $db = JFactory::getDBO();
 
     $query = "ALTER TABLE `" . $tbl . "` MODIFY `" . $col . "` " . $defns;
     $db->setQuery($query);
@@ -408,7 +408,7 @@ function tblModifyColumn($tbl, $col, $defns) {
 
 /* Check column value */
 function tblCheckColumnValue($tbl, $col, $cond = '') {
-    $db =& JFactory::getDBO();
+    $db = JFactory::getDBO();
     $query = "SELECT " . $col . " FROM " . $tbl . ' ' . $cond;
     $db->setQuery($query);
     $result = $db->loadResult();
@@ -419,7 +419,7 @@ function tblCheckColumnValue($tbl, $col, $cond = '') {
 
 /* Set column value */
 function tblSetColumnValue($tbl, $col, $val, $cond = '') {
-    $db =& JFactory::getDBO();
+    $db = JFactory::getDBO();
     $query = "UPDATE " . $tbl . " SET " . $col . " = " . $db->Quote($val) . ' ' . $cond;
     $db->setQuery($query);
     $result = $db->query();
@@ -428,7 +428,7 @@ function tblSetColumnValue($tbl, $col, $val, $cond = '') {
 
 function tblGetColumAndIDValues($tbl, $id_colname, $col) {
 
-    $db =& JFactory::getDBO();
+    $db = JFactory::getDBO();
     $query = "SELECT `" . $id_colname . "`, `" . $col . "` FROM " . $tbl;
     $db->setQuery($query);
     $result = $db->loadObjectList();

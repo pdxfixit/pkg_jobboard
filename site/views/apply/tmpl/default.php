@@ -7,7 +7,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 ?>
-<?php $user = & JFactory::getUser() ?>
+<?php $user = JFactory::getUser() ?>
 
 <!-- CSS -->
 <?php JHTML::_('stylesheet', 'base.css', 'components/com_jobboard/css/') ?>

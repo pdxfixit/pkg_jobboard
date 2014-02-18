@@ -15,7 +15,7 @@ class JobboardModelUnsolicited extends JModel {
     var $_option = null;
 
     function getJobData($id) {
-        $db = & JFactory :: getDBO();
+        $db = JFactory :: getDBO();
         $sql = 'SELECT
                        j.id
                       , j.post_date

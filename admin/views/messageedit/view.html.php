@@ -13,7 +13,7 @@ class JobboardViewMessageedit extends JView {
 
     function display($tpl = null) {
         $task = JRequest::getVar('task', '');
-        $row =& JTable::getInstance('Messages', 'Table');
+        $row = JTable::getInstance('Messages', 'Table');
         $this->assign('jb_render', JobBoardHelper::renderJobBoardx());
         $cid = JRequest::getVar('cid', array(0), '', 'array');
         $id = $cid[0];

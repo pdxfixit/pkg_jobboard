@@ -25,10 +25,10 @@ class JobboardControllerRss extends JController {
         $selcat = JRequest::getInt('selcat', 1);
         $keywd = JRequest::getString('keysrch', '');
 
-        $feed_model = & $this->getModel('Rss');
+        $feed_model = $this->getModel('Rss');
         $seldesc = $feed_model->getCatname($selcat);
 
-        $_view = & $this->getView('rss', 'feed');
+        $_view = $this->getView('rss', 'feed');
         $_view->setModel($feed_model, true);
         $_view->assign('seldesc', $seldesc);
         $_view->assign('selcat', $selcat);

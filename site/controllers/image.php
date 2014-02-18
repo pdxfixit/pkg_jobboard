@@ -22,7 +22,7 @@ class JobboardControllerImage extends JController {
         $this->registerTask('upload', 'imgFileUploadProcess');
         $this->registerTask('saveimg', 'saveImage');
         $this->registerTask('crop', 'cropImg');
-        $user = & JFactory::getUser();
+        $user = JFactory::getUser();
         $uid = $user->id;
         $this->_setUid($uid);
     }
@@ -43,7 +43,7 @@ class JobboardControllerImage extends JController {
         $w = JRequest::getInt('w');
         $h = JRequest::getInt('h');
 
-        $user_model =& $this->getModel('User');
+        $user_model = $this->getModel('User');
 
         $imgdata = $user_model->getProfileImageByUserId($this->_uid);
         $filename = $imgdata->profile_image_path . DS . $imgdata->profile_image_name;
@@ -54,7 +54,7 @@ class JobboardControllerImage extends JController {
         $maxwidth = 130;
         $maxheight = 130;
 
-        $view =& $this->getView('image', 'img');
+        $view = $this->getView('image', 'img');
         $view->assign('x', $x);
         $view->assign('y', $y);
         $view->assign('w', $w);
@@ -84,7 +84,7 @@ class JobboardControllerImage extends JController {
 
         //$this->usrImgDel(false, false); // delete current thumbs to circumvent browser caching
 
-        $user_model =& $this->getModel('User');
+        $user_model = $this->getModel('User');
         $profile_pic = JobBoardHelper::checkProfilePicStatus($this->_uid, $user_model, 3);
 
         $save_path = $profile_pic['rootpath'] . DS . 'thumbs';
@@ -235,7 +235,7 @@ class JobboardControllerImage extends JController {
         $uploaded = false;
         $uploaded = $this->_uploadImage($file, $this->_uid, $post);
 
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         if ($uploaded == true) {
             $msg = JText::_('COM_JOBBOARD_IMGUPLD_SUCCESS');
         } else {
@@ -249,7 +249,7 @@ class JobboardControllerImage extends JController {
 
     private function _uploadImage($img, $uid = 0, $post) {
         $upload_msg = array();
-        $user_model =& $this->getModel('User');
+        $user_model = $this->getModel('User');
 
         $user_profile_id = $user_model->userProfileExists($uid);
 
@@ -511,7 +511,7 @@ class JobboardControllerImage extends JController {
         JRequest::checkToken('get') or jexit(JText::_('Invalid Token'));
 
         $errors = array();
-        $user_model =& $this->getModel('User');
+        $user_model = $this->getModel('User');
 
         $user_profile_id = $user_model->userProfileExists($this->_uid);
 
@@ -544,7 +544,7 @@ class JobboardControllerImage extends JController {
             } else $success = true;
         }
 
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         if ($user_profile_id <= 0 || ($success == true && count($errors) <= 0)) {
             $msg = JText::_('COM_JOBBOARD_IMGDEL_SUCCESS');
             if ($redirect == true)

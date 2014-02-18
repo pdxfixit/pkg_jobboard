@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------- */
 
 defined('_JEXEC') or die('Restricted access');
-$document =& JFactory::getDocument();
+$document = JFactory::getDocument();
 $this->data['is_private'] = !isset($this->data['is_private']) ? 0 : $this->data['is_private'];
 ?>
 <?php $curyear = $this->av_date->toFormat("%Y");

@@ -14,7 +14,7 @@ class JobboardViewApply extends JView {
 
     function display($tpl = null) {
         $app = JFactory::getApplication();
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
 
         if ($this->published) {
 
@@ -25,7 +25,7 @@ class JobboardViewApply extends JView {
             $this->assign('errors', JRequest::getVar('errors', ''));
             $this->assign('setstate', JobBoardHelper::renderJobBoard());
 
-            $this->config = & $this->get('ApplyConfig', 'Config');
+            $this->config = $this->get('ApplyConfig', 'Config');
             if ($this->config->use_location) {
                 $job_location = ($this->data->country_name <> 'COM_JOBBOARD_DB_ANYWHERE_CNAME') ? ', ' . $this->data->city : ', ' . JText::_('WORK_FROM_ANYWHERE');
             } else $job_location = '';
@@ -56,8 +56,8 @@ class JobboardViewApply extends JView {
     function _addScripts($include_page_script = true) {
         JHTML::_('behavior.mootools');
         jimport('joomla.environment.browser');
-        $document =& JFactory::getDocument();
-        $browser =& JBrowser::getInstance();
+        $document = JFactory::getDocument();
+        $browser = JBrowser::getInstance();
         if (is_int(strpos($browser->getBrowser(), 'msie')))
             $document->addStyleSheet('components/com_jobboard/css/base_ie.css');
 

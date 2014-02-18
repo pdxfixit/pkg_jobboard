@@ -63,7 +63,7 @@ $option = 'com_jobboard';
         $k = 0;
 
         for ($i = 0, $n; $i < $n; $i++) {
-            $row =& $this->rows[$i];
+            $row = $this->rows[$i];
             $checked = JHTML::_('grid.id', $i, $row->id);
             $link = JFilterOutput::ampReplace('index.php?option=' . $option . '&view=unsolicited&task=edit&cid[]=' . $row->id);
             ?>

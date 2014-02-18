@@ -14,13 +14,13 @@ class JobboardViewDepartmentedit extends JView {
 
     function display($tpl = null) {
         $task = JRequest::getVar('task', '');
-        $row =& JTable::getInstance('Department', 'Table');
+        $row = JTable::getInstance('Department', 'Table');
         $this->assign('jb_render', JobBoardHelper::renderJobBoardx());
         $cid = JRequest::getVar('cid', array(0), '', 'array');
         $id = intval($cid[0]);
         $row->load($id);
         if ($id < 1) {
-            $config =& JTable::getInstance('Config', 'Table');
+            $config = JTable::getInstance('Config', 'Table');
             $config->load(1);
             $this->assignRef('config', $config);
         }

@@ -52,7 +52,7 @@ $option = 'com_jobboard';
         <?php
         $k = 0;
         for ($i = 0, $n = count($this->rows); $i < $n; $i++) {
-            $row =& $this->rows[$i];
+            $row = $this->rows[$i];
             $checked = JHTML::_('grid.id', $i, $row->id);
             $link = JFilterOutput::ampReplace('index.php?option=' . $option . '&view=departments&task=edit&cid[]=' . $row->id);
             ?>

@@ -38,14 +38,14 @@ class JobboardControllerEducation extends JController {
         $cid = JRequest::getVar('cid', array(), '', 'array');
         JArrayHelper::toInteger($cid);
 
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
         $this->setToolbar();
 
         if (count($cid)) {
             $cids = implode(',', $cid);
-            $jobs_model = & $this->getModel('Education');
+            $jobs_model = $this->getModel('Education');
             $delete_result = $jobs_model->deleteEdlevels($cids);
             if ($delete_result <> true) {
                 $this->setRedirect('index.php?option=com_jobboard&view=education', $delete_result);
@@ -58,7 +58,7 @@ class JobboardControllerEducation extends JController {
 
     function display() //display list of all users
     {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
         $view = JRequest::getVar('view');

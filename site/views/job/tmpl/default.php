@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 <?php endif ?>
     <!-- End CSS -->
 
-<?php $user = & JFactory::getUser() ?>
+<?php $user = JFactory::getUser() ?>
 <?php if (!$this->published) : ?>
     <div id="jobcont">
         <h3><?php echo JText::_('COM_JOBBOARD_JOB_DISABLED') ?></h3>
@@ -28,7 +28,7 @@ defined('_JEXEC') or die('Restricted access');
 <?php $back = 'index.php?option=com_jobboard&view=list&Itemid=' . $this->itemid; ?>
 <?php $share = 'index.php?option=com_jobboard&view=share&job_id=' . $this->id . '&Itemid=' . $this->itemid; ?>
 
-<?php $registry =& JFactory::getConfig(); ?>
+<?php $registry = JFactory::getConfig(); ?>
 <?php $sitename = $registry->getValue('config.sitename'); ?>
 
 <?php $job_opng = JText::_('JOB_OPENING') . ': '; ?>
@@ -162,7 +162,7 @@ $map_coded = false; ?>
             <?php if (!$this->is_modal) : ?>
                 <?php if ($this->config->enable_post_maps && ($this->config->use_location == 1 && $this->data->country <> 266 && $this->data->geo_latitude <> '')) : ?>
                     <?php if (empty($this->rformat)) : ?>
-                        <?php $lang = & JFactory::getLanguage()->getTag();
+                        <?php $lang = JFactory::getLanguage()->getTag();
                         $lang = explode('-', $lang); ?>
                         <?php if ($map_coded) : ?>
                             <br />

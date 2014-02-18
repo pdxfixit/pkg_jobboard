@@ -91,7 +91,7 @@ class JobboardModelJob extends JModel {
     }
 
     function repostJob($job) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $job->geo_latitude = empty($job->geo_latitude) ? 0 : $job->geo_latitude;
         $job->geo_longitude = empty($job->geo_longitude) ? 0 : $job->geo_longitude;
         $job->geo_state_province = empty($job->geo_state_province) ? '' : $job->geo_state_province;
@@ -126,7 +126,7 @@ class JobboardModelJob extends JModel {
     }
 
     function save($job) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $job->geo_latitude = empty($job->geo_latitude) ? 0 : $job->geo_latitude;
         $job->geo_longitude = empty($job->geo_longitude) ? 0 : $job->geo_longitude;
         $job->geo_state_province = empty($job->geo_state_province) ? '' : $job->geo_state_province;
@@ -160,7 +160,7 @@ class JobboardModelJob extends JModel {
     }
 
     function savenew($job) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $job->geo_latitude = empty($job->geo_latitude) ? 0 : $job->geo_latitude;
         $job->geo_longitude = empty($job->geo_longitude) ? 0 : $job->geo_longitude;
         $job->geo_state_province = empty($job->geo_state_province) ? '' : $job->geo_state_province;

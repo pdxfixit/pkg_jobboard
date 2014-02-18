@@ -11,9 +11,9 @@ jimport('joomla.application.component.view');
 class JobboardViewJob extends JView {
 
     function display($tpl = null) {
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         $app = JFactory::getApplication();
-        $this->config = & $this->get('JobConfig', 'Config');
+        $this->config = $this->get('JobConfig', 'Config');
 
         if ($this->published) {
             jimport('joomla.utilities.date');
@@ -28,13 +28,13 @@ class JobboardViewJob extends JView {
 
             $ref_num = $this->data->ref_num <> '' ? ' (' . JText::_('COM_JOBBOARD_ENT_REF') . ': ' . $this->data->ref_num . ')' : '';
 
-            $params = & JComponentHelper::getParams('com_jobboard');
+            $params = JComponentHelper::getParams('com_jobboard');
 
             $title_string = $this->data->job_title . $job_location . $ref_num;
-            $menus = & JSite::getMenu();
+            $menus = $app->getMenu();
             $menu = $menus->getActive();
 
-            $uri = & JURI::getInstance();
+            $uri = JURI::getInstance();
             $this->uri = $uri->getScheme() . '://' . $uri->getHost() . $uri->getPath();
 
             if (is_object($menu) && isset($menu->query['view']) && $menu->query['view'] == 'job' && isset($menu->query['id']) && $menu->query['id'] == $item->id) {
@@ -79,8 +79,8 @@ class JobboardViewJob extends JView {
         }
 
         jimport('joomla.environment.browser');
-        $document =& JFactory::getDocument();
-        $browser =& JBrowser::getInstance();
+        $document = JFactory::getDocument();
+        $browser = JBrowser::getInstance();
         if (is_int(strpos($browser->getBrowser(), 'msie'))) {
             $document->addStyleSheet('components/com_jobboard/css/base_ie.css');
             if (intval($browser->getVersion()) > 7) {

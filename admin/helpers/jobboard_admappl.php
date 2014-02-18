@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted Access');
 class JobBoardAdmapplHelper {
 
     static function getApplIds($aid) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT ' . $db->nameQuote('user_id') . ' AS sid
                         , ' . $db->nameQuote('job_id') . ' AS jid
                         , ' . $db->nameQuote('cvprof_id') . ' AS pid

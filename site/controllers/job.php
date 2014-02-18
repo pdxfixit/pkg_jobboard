@@ -52,7 +52,7 @@ class JobboardControllerJob extends JController {
         $message->job_title = JRequest::getVar('job_title', '', '', 'string');
         $message->job_city = JRequest::getVar('job_city', '', '', 'string');
         $message->personal_message = JRequest::getVar('personal_message', '', '', 'string');
-        $uri = & JURI::getInstance();
+        $uri = JURI::getInstance();
         $message->link = $uri->getScheme() . '://' . $uri->getHost() . JRequest::getVar('job_path', '', '', 'string');
 
         $fields_valid = $this->validateFields();
@@ -78,7 +78,7 @@ class JobboardControllerJob extends JController {
                 $this->sendEmail($message, trim($message->rec_emails));
             }
 
-            $mesgModel = & $this->getModel('Message');
+            $mesgModel = $this->getModel('Message');
             $saved = $mesgModel->saveMessage($message);
 
             if ($saved) {
@@ -100,7 +100,7 @@ class JobboardControllerJob extends JController {
     }
 
     function sendEmail($msgobj, $recipient) {
-        $messg_model =& $this->getModel('Message');
+        $messg_model = $this->getModel('Message');
         $msg_id = $messg_model->getMsgID('sharejpriv');
         $msg = $messg_model->getMsg($msg_id);
 
@@ -121,17 +121,17 @@ class JobboardControllerJob extends JController {
         require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_job.php');
         $published = JobBoardJobHelper::jobPublished($id);
 
-        $view =& $this->getView('job', 'html');
-        $config_model =& $this->getModel('Config');
+        $view = $this->getView('job', 'html');
+        $config_model = $this->getModel('Config');
         $catid = JRequest :: getInt('selcat');
 
         if ($published) {
-            $app = & JFactory::getApplication();
-            $user = & JFactory::getUser();
-            $jobs =& JTable::getInstance('Job', 'Table');
+            $app = JFactory::getApplication();
+            $user = JFactory::getUser();
+            $jobs = JTable::getInstance('Job', 'Table');
             $jobs->hit($id);
-            $job_model =& $this->getModel('Job');
-            $user_model =& $this->getModel('User');
+            $job_model = $this->getModel('Job');
+            $user_model = $this->getModel('User');
             $job_data = $job_model->getData($id);
             $list_deflt_layout = $config_model->getListcfg();
             $layout = $app->getUserStateFromRequest('com_jobboard.list.layout', 'layout', $list_deflt_layout);

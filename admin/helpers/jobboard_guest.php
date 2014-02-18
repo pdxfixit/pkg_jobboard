@@ -18,7 +18,7 @@ class JobBoardGuestHelper {
      * @return int
      */
     static function getMaxFileUploadSize() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT ' . $db->nameQuote('max_filesize') . '
                           FROM ' . $db->nameQuote('#__jobboard_config') . '
                           WHERE ' . $db->nameQuote('id') . ' = 1';

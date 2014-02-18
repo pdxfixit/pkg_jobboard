@@ -66,7 +66,7 @@ class JobboardControllerUpload extends JController {
 
         //no errors
         $fields->job_id = $id;
-        $record_application = & $this->getModel('Upload');
+        $record_application = $this->getModel('Upload');
         $saved = $record_application->saveApplication($upload_result->hash_filename, $fields);
         if ($saved) {
             $record_application->incrApplications($id); //increment hit counter
@@ -256,7 +256,7 @@ class JobboardControllerUpload extends JController {
             return;
         }
         //no errors
-        $record_application = & $this->getModel('Upload');
+        $record_application = $this->getModel('Upload');
         $saved = $record_application->saveUnsolicited($upload_result->hash_filename, $fields);
         if ($saved) {
             $msg = '&nbsp;&nbsp;' . JText::_('CV_SUBMITTED');
@@ -359,7 +359,7 @@ class JobboardControllerUpload extends JController {
     }
 
     function sendEmailUnsolicited($type, $recipient, $config, $cvattachment = null) {
-        $messg_model =& $this->getModel('Message');
+        $messg_model = $this->getModel('Message');
         $msg_id = $messg_model->getMsgID($type);
         $msg = $messg_model->getMsg($msg_id);
 
@@ -387,7 +387,7 @@ class JobboardControllerUpload extends JController {
     }
 
     function sendEmailToUser($type, $recipient, $id = 0, $config) {
-        $messg_model =& $this->getModel('Message');
+        $messg_model = $this->getModel('Message');
         $msg_id = $messg_model->getMsgID($type);
         $msg = $messg_model->getMsg($msg_id);
 
@@ -408,7 +408,7 @@ class JobboardControllerUpload extends JController {
             $subject = str_replace('[cvtitle]', $to_title, $subject);
         }
         if ($type === 'usernew') {
-            $job_model =& $this->getModel('Job');
+            $job_model = $this->getModel('Job');
             $job = $job_model->getJobdata($id);
             $subject = str_replace('[jobtitle]', $job->job_title, $subject);
             $subject = str_replace('[location]', $recipient->city, $subject);
@@ -419,7 +419,7 @@ class JobboardControllerUpload extends JController {
     }
 
     function sendAdminEmail($dept_name, $type, $recipients, $job_location, $application, $id = 0, $config, $cvattachment = null) {
-        $messg_model =& $this->getModel('Message');
+        $messg_model = $this->getModel('Message');
         $msg_id = $messg_model->getMsgID($type);
         $msg = $messg_model->getMsg($msg_id);
 
@@ -428,7 +428,7 @@ class JobboardControllerUpload extends JController {
         $applicant_email = $application->email;
         $applicant_firstname = $application->first_name;
         $applicant_lastname = $application->last_name;
-        $job_model =& $this->getModel('Job');
+        $job_model = $this->getModel('Job');
         $job = $job_model->getJobdata($id);
         $job_title = $job->job_title;
 

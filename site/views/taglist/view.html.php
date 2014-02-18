@@ -18,20 +18,20 @@ class JobboardViewTaglist extends JView {
 
         $app = JFactory::getApplication();
 
-        $this->data =& $this->get('Data');
+        $this->data = $this->get('Data');
 
         $featured_count = $this->countFeatured(&$this->data);
         $locsrch = $this->escape($this->locsrch);
         if ($featured_count > 0 && $locsrch <> '') {
             $this->data = $this->sortFeatured(&$this->data);
         }
-        $this->config = & $this->get('Querycfg', 'Config');
-        $this->jobsearch =& $this->get('Search');
-        $this->jobtypes =& $this->get('JobTypes');
-        $this->jobcareerlvls =& $this->get('Careerlvls');
-        $this->jobedlvls =& $this->get('Edlvls');
+        $this->config = $this->get('Querycfg', 'Config');
+        $this->jobsearch = $this->get('Search');
+        $this->jobtypes = $this->get('JobTypes');
+        $this->jobcareerlvls = $this->get('Careerlvls');
+        $this->jobedlvls = $this->get('Edlvls');
         if ($this->config->use_location == true) :
-            $this->radii =& $this->get('Distances');
+            $this->radii = $this->get('Distances');
             $this->dist_symbol = $this->config->distance_unit == 0 ? JText::_('COM_JOBBOARD_DIST_METRIC') : JText::_('COM_JOBBOARD_DIST_IMPERIAL');
             $this->sel_distance = $app->getUserStateFromRequest("com_jobboard.tl.sel_distance", 'sel_distance', $this->config->default_distance, 'int');
             $geo_address = $app->getUserState('com_jobboard.tl.geo_address');
@@ -42,8 +42,8 @@ class JobboardViewTaglist extends JView {
         $this->filter_job_type = $app->getUserStateFromRequest("com_jobboard.tl.filter_job_type", 'filter_job_type', array(), 'array');
         $this->filter_careerlvl = $app->getUserStateFromRequest("com_jobboard.tl.filter_careerlvl", 'filter_careerlvl', array(), 'array');
         $this->filter_edulevel = $app->getUserStateFromRequest("com_jobboard.tl.filter_edulevel", 'filter_edulevel', array(), 'array');
-        $this->pagination =& $this->get('Pagination');
-        $this->categories =& $this->get('Categories');
+        $this->pagination = $this->get('Pagination');
+        $this->categories = $this->get('Categories');
         $this->setstate = JobBoardHelper::renderJobBoard();
         $this->jobsearch = $this->escape($this->jobsearch);
         $this->keysrch = $this->escape($this->keysrch);
@@ -60,7 +60,7 @@ class JobboardViewTaglist extends JView {
         $this->_addScripts();
         $this->rss_on = JobBoardListHelper::rssEnabled();
 
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
 
         parent::display($tpl);
     }
@@ -91,8 +91,8 @@ class JobboardViewTaglist extends JView {
     function _addScripts() {
         JHTML::_('behavior.mootools');
         jimport('joomla.environment.browser');
-        $document =& JFactory::getDocument();
-        $browser =& JBrowser::getInstance();
+        $document = JFactory::getDocument();
+        $browser = JBrowser::getInstance();
         if (is_int(strpos($browser->getBrowser(), 'msie')))
             $document->addStyleSheet('components/com_jobboard/css/base_ie.css');
 

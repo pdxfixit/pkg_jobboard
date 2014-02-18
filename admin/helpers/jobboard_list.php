@@ -37,7 +37,7 @@ class JobBoardListHelper {
     }
 
     function rssEnabled() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('show_rss') . ' FROM ' . $db->nameQuote('#__jobboard_config') . '
             WHERE ' . $db->nameQuote('id') . ' = 1';
         $db->setQuery($query);

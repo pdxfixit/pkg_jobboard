@@ -524,9 +524,9 @@ class plgSystemJobboard_Schedule extends JPlugin {
             $body .= JText::_('PLG_JOBBOARD_MAINT_TASKS_DB_BACKUP') . ": " . $task_result . "\n";
             $body .= "------------------------\n\n";
 
-            $admin_sendresult =& JFactory::getMailer()->sendMail($admin_details['reply_to'], $admin_details['reply_to'], $admin_details['admin_email'], $subject, $body, null, null, null, $this->_notify_vars['zip']);
+            $admin_sendresult = JFactory::getMailer()->sendMail($admin_details['reply_to'], $admin_details['reply_to'], $admin_details['admin_email'], $subject, $body, null, null, null, $this->_notify_vars['zip']);
 
-        } else $admin_sendresult =& JFactory::getMailer()->sendMail($admin_details['reply_to'], $admin_details['admin_email'], $recipients, $subject, $body);
+        } else $admin_sendresult = JFactory::getMailer()->sendMail($admin_details['reply_to'], $admin_details['admin_email'], $recipients, $subject, $body);
 
         return $admin_sendresult;
     }

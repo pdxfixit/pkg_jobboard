@@ -22,7 +22,7 @@ class JobboardViewFeedback extends JView {
     }
 
     function _addScripts() {
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         $document->addStyleSheet('components/com_jobboard/css/base.css');
     }
 

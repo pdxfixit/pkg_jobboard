@@ -14,9 +14,9 @@ class JobboardViewApplicants extends JView {
     function display($tpl = null) {
         $app = JFactory::getApplication();
 
-        $rows =& $this->get('data');
-        $pagination =& $this->get('pagination');
-        $this->search =& $this->get('search');
+        $rows = $this->get('data');
+        $pagination = $this->get('pagination');
+        $this->search = $this->get('search');
         $this->search = !empty($this->search) ? $this->escape($this->search) : $this->search;
         $this->assignRef('rows', $rows);
         $this->assignRef('pagination', $pagination);
@@ -32,8 +32,8 @@ class JobboardViewApplicants extends JView {
         $this->year_format = !version_compare(JVERSION, '1.6.0', 'ge') ? '%Y' : 'Y';
 
         jimport('joomla.environment.browser');
-        $document =& JFactory::getDocument();
-        $browser =& JBrowser::getInstance();
+        $document = JFactory::getDocument();
+        $browser = JBrowser::getInstance();
         if (is_int(strpos($browser->getBrowser(), 'msie'))) {
             if (intval($browser->getVersion()) > 7) {
                 $cleafix = ".clearfix {display: block;}";

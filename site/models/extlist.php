@@ -239,7 +239,7 @@ class JobboardModelExtlist extends JModel {
     }
 
     function getCategories() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT id, type
               FROM
                   #__jobboard_categories
@@ -250,7 +250,7 @@ class JobboardModelExtlist extends JModel {
     }
 
     function getDefaultCat() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT default_category
               FROM
                   #__jobboard_config';
@@ -285,7 +285,7 @@ class JobboardModelExtlist extends JModel {
         $app = JFactory::getApplication();
 
         if (empty($this->data)) {
-            $db = & $this->getDbo();
+            $db = $this->getDbo();
             $query = $this->_buildQuery();
             $_limit = $this->getState('limit');
             $_limitstart = $this->getState('limitstart');
@@ -345,7 +345,7 @@ class JobboardModelExtlist extends JModel {
     }
 
     function getCareerlvls() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT *
               FROM
                   #__jobboard_career_levels
@@ -357,7 +357,7 @@ class JobboardModelExtlist extends JModel {
     }
 
     function getEdlvls() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT *
               FROM
                   #__jobboard_education

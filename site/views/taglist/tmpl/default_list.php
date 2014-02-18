@@ -8,7 +8,7 @@
 defined('_JEXEC') or die('Restricted access');
 $app = JFactory::getApplication();
 $itemid = JRequest::getInt('Itemid');
-$user = & JFactory::getUser();
+$user = JFactory::getUser();
 ?>
     <!-- Style sheets -->
 <?php JHTML::_('stylesheet', 'base.css', 'components/com_jobboard/css/') ?>
@@ -22,7 +22,7 @@ $user = & JFactory::getUser();
     <!-- End Style sheets -->
 
 <?php $sortlink = JRoute::_('index.php?option=com_jobboard&view=list&Itemid=' . $itemid); ?>
-<?php $document =& JFactory::getDocument(); ?>
+<?php $document = JFactory::getDocument(); ?>
 
     <!--sort order-->
 <?php $sort = $app->getUserStateFromRequest('com_jobboard.tl.list.sort', 'sort', 'd'); ?>
@@ -116,7 +116,7 @@ $user = & JFactory::getUser();
 
 <?php $link = 'index.php?option=com_jobboard&view=list&Itemid=' . $itemid; ?>
     <form id="category_list" name="category_list" method="post" action="<?php echo JRoute::_($link); ?>">
-    <?php $all_jobs = 'index.php?option=com_jobboard&view=list&selcat=1&daterange=&jobsearch=&keysrch=&locsrch=&Itemid=' . $itemid; ?>
+    <?php $all_jobs = 'index.php?option=com_jobboard&view=list&selcat=1&daterange=jobsearch=keysrch=locsrch=Itemid=' . $itemid; ?>
     <div id="srchInputs">
         <div class="filterset">
             <label for="jobsearch">

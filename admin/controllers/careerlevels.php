@@ -38,14 +38,14 @@ class JobboardControllerCareerlevels extends JController {
         $cid = JRequest::getVar('cid', array(), '', 'array');
         JArrayHelper::toInteger($cid);
 
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
         $this->setToolbar();
 
         if (count($cid)) {
             $cids = implode(',', $cid);
-            $jobs_model = & $this->getModel('Careerlevels');
+            $jobs_model = $this->getModel('Careerlevels');
             $delete_result = $jobs_model->deleteCareers($cids);
             if ($delete_result <> true) {
                 //echo "<script> alert('".$db->getErrorMsg(true)."'); window.history.go(-1); </script>\n";
@@ -69,7 +69,7 @@ class JobboardControllerCareerlevels extends JController {
 
     function display() //display list of all users
     {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 

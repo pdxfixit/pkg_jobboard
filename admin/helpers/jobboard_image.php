@@ -16,7 +16,7 @@ class JobBoardImageHelper {
      * @params string
      **/
     function getImage($val) {
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         $document->setMimeEncoding('image/jpg');
 
         $im = @imagecreatetruecolor(100, 40)

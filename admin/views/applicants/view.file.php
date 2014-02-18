@@ -12,7 +12,7 @@ jimport('joomla.application.component.view');
 class JobboardViewApplicants extends JView {
 
     function display($tpl = null) {
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
 
         if ($fd = fopen($this->file, "r")) {
             $fileSize = filesize($this->file);

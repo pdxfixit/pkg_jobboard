@@ -11,7 +11,7 @@ jimport('joomla.application.component.view');
 class JobboardViewImage extends JView {
 
     function display($tpl = null) {
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         $image_info = GetImageSize($this->filename);
 
         $memoryLimitChanged = 0;

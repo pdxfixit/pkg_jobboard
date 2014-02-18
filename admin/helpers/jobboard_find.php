@@ -11,8 +11,8 @@ defined('_JEXEC') or die('Restricted Access');
 class JobBoardFindHelper {
 
     function getUsrLoc($uid) {
-        // $app = & JFactory::getApplication();
-        $db = & JFactory::getDBO();
+        // $app = JFactory::getApplication();
+        $db = JFactory::getDBO();
         $where = ' WHERE u.`user_id` = ' . $uid;
         $sql = 'SELECT u.`contact_location` as location,
                 u.`contact_country` as country_id,
@@ -27,7 +27,7 @@ class JobBoardFindHelper {
     }
 
     function getEdlvls() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT *
               FROM
                   #__jobboard_education

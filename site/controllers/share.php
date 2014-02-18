@@ -26,16 +26,16 @@ class JobboardControllerShare extends JController {
         $app = JFactory::getApplication();
         $catid = $app->getUserStateFromRequest('com_jobboard.list.selcat', 'selcat', 1);
 
-        $view =& $this->getView('share', 'html');
+        $view = $this->getView('share', 'html');
 
         if ($published) {
-            $job_model =& $this->getModel('Apply');
+            $job_model = $this->getModel('Apply');
             $job_data = $job_model->getJobData($id);
 
-            $messg_model =& $this->getModel('Message');
+            $messg_model = $this->getModel('Message');
             $msg_id = $messg_model->getMsgID('sharejob');
             $msg = $messg_model->getMsg($msg_id);
-            $config_model =& $this->getModel('Config');
+            $config_model = $this->getModel('Config');
             $config = $config_model->getShareConfig();
 
             $view->setModel($job_model, true);

@@ -7,7 +7,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-$editor = & JFactory::getEditor();
+$editor = JFactory::getEditor();
 ?>
 <?php if (!$this->is_modal) : ?>
     <?php $modal_params = array('handler' => 'iframe', 'size' => array('x' => 640, 'y' => 480), 'sizeLoading' => array('x' => 250, 'y' => 150), 'overlay' => false, 'classWindow' => 'jobboardmodal'); ?>

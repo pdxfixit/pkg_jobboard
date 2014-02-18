@@ -45,7 +45,7 @@ class JobboardControllerCategory extends JController {
         $cid = JRequest::getVar('cid', array(), '', 'array');
         JArrayHelper::toInteger($cid);
 
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
         $this->setToolbar();
@@ -65,7 +65,7 @@ class JobboardControllerCategory extends JController {
 
                 $success_msg = ($count_cid == 1) ? JText::_('COM_JOBBOARD_CATEGORY_DELETED') : JText::_('COM_JOBBOARD_CATEGORIES_DELETED');
                 $cids = implode(',', $cid);
-                $jobs_model = & $this->getModel('Category');
+                $jobs_model = $this->getModel('Category');
                 $delete_result = $jobs_model->deleteCategories($cids);
                 if ($delete_result <> true) {
                     $this->setRedirect('index.php?option=' . $option . '&view=category', $delete_result);
@@ -81,7 +81,7 @@ class JobboardControllerCategory extends JController {
                 } else {
                     $success_msg = ($count_cid == 2) ? JText::_('COM_JOBBOARD_CATEGORY_DELETED') : JText::_('COM_JOBBOARD_CATEGORIES_DELETED');
                     $cids = implode(',', $cid);
-                    $jobs_model = & $this->getModel('Category');
+                    $jobs_model = $this->getModel('Category');
                     $delete_result = $jobs_model->deleteCategories($cids);
                     $success_msg .= '; ' . $undel_messg;
                     if ($delete_result <> true) {
@@ -108,7 +108,7 @@ class JobboardControllerCategory extends JController {
     }
 
     function display() {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -162,7 +162,7 @@ class JobboardControllerCategory extends JController {
 
         JArrayHelper::toInteger($cid);
         $cids = implode(',', $cid);
-        $jobs_model = & $this->getModel('Category');
+        $jobs_model = $this->getModel('Category');
         $delete_result = $jobs_model->setPublishStatus($publish, $cids);
 
         if (!$delete_result) {

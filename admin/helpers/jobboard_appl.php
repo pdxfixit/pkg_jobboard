@@ -35,7 +35,7 @@ class JobBoardApplHelper {
     }
 
     static function jobDisabled($jid) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT COUNT(`id`)
                   FROM
                     `#__jobboard_jobs`
@@ -46,7 +46,7 @@ class JobBoardApplHelper {
     }
 
     static function sendEmail(&$msgobj, &$config, $to_email, $msg_type, &$messg_model = null) {
-        //$messg_model =& $this->getModel('Message');
+        //$messg_model = $this->getModel('Message');
         JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR . DS . 'tables');
         $msg_id = $messg_model->getMsgID($msg_type);
         $msg = $messg_model->getMsg($msg_id);
@@ -67,9 +67,9 @@ class JobBoardApplHelper {
         $body = str_replace('[fromname]', $fromname, $body);
 
         if ($msg_type == 'adminupdate_application') {
-            $status_tbl = & JTable::getInstance('Status', 'Table');
+            $status_tbl = JTable::getInstance('Status', 'Table');
             $status_tbl->load($msgobj->status);
-            $user = & JFactory::getUser();
+            $user = JFactory::getUser();
             $body = str_replace('[appladmin]', $user->name, $body);
             $body = str_replace('[department]', $msgobj->dept_name, $body);
             $body = str_replace('[applstatus]', $status_tbl->status_description, $body);
@@ -80,9 +80,9 @@ class JobBoardApplHelper {
 
     static function processMail(&$applicant, $registered = false, &$messg_model = null) {
 
-        $config = & JTable::getInstance('Config', 'Table');
+        $config = JTable::getInstance('Config', 'Table');
         $config->load(1);
-        $dept_tbl = & JTable::getInstance('Department', 'Table');
+        $dept_tbl = JTable::getInstance('Department', 'Table');
         $dept_tbl->load($applicant->department);
 
         switch ($applicant->status) {
@@ -123,7 +123,7 @@ class JobBoardApplHelper {
     }
 
     function getApplCV($aid) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $where = ' WHERE a.`id` = ' . $aid;
         $sql = 'SELECT cv.`profile_name`
               FROM `#__jobboard_cvprofiles` AS cv
@@ -153,7 +153,7 @@ class JobBoardApplHelper {
     }
 
     static function getDeptId($job_id) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT ' . $db->nameQuote('department') . '
                   FROM ' . $db->nameQuote('#__jobboard_jobs') . '
                  WHERE ' . $db->nameQuote('id') . ' = ' . intval($job_id);
@@ -163,7 +163,7 @@ class JobBoardApplHelper {
     }
 
     static function getJobTitle($job_id) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT ' . $db->nameQuote('job_title') . '
                   FROM ' . $db->nameQuote('#__jobboard_jobs') . '
                  WHERE ' . $db->nameQuote('id') . ' = ' . intval($job_id);
@@ -173,7 +173,7 @@ class JobBoardApplHelper {
     }
 
     static function getRegUser($aid) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT u.' . $db->nameQuote('id') . ', u.' . $db->nameQuote('name') . ', u.' . $db->nameQuote('email') . '
                FROM ' . $db->nameQuote('#__users') . ' AS u
                   INNER JOIN ' . $db->nameQuote('#__jobboard_usr_applications') . ' AS a
@@ -185,7 +185,7 @@ class JobBoardApplHelper {
     }
 
     static function getSiteUser($aid) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT ' . $db->nameQuote('first_name') . ', ' . $db->nameQuote('last_name') . ', ' . $db->nameQuote('email') . '
                 FROM ' . $db->nameQuote('#__jobboard_applicants') . '
                     WHERE ' . $db->nameQuote('id') . ' = ' . intval($aid);
@@ -196,7 +196,7 @@ class JobBoardApplHelper {
 
     //notify_on_appl_accept
     static function getApplAcceptDefault($uid) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT `notify_on_appl_accept` FROM `#__jobboard_users`
                     WHERE `user_id` = ' . intval($uid);
         $db->setQuery($sql);
@@ -205,7 +205,7 @@ class JobBoardApplHelper {
     }
 
     static function getApplRejectDefault($uid) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = 'SELECT `notify_on_appl_reject` FROM `#__jobboard_users`
                     WHERE `user_id` = ' . intval($uid);
         $db->setQuery($sql);

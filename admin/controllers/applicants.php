@@ -32,7 +32,7 @@ class JobboardControllerApplicants extends JController {
     }
 
     function display() {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_applicants {background-image:url(components/com_jobboard/images/job_applicants.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
         JToolBarHelper::title(JText::_('COM_JOBBOARD_JOB_APPLICANTS'), 'job_applicants.png');
@@ -45,15 +45,15 @@ class JobboardControllerApplicants extends JController {
 
         JobBoardToolbarHelper::setToolbarLinks('applicants');
 
-        $cfig_model =& $this->getModel('Config');
+        $cfig_model = $this->getModel('Config');
         $config = $cfig_model->getApplConfig();
 
-        $status_model =& $this->getModel('Status');
+        $status_model = $this->getModel('Status');
         $statuses = $status_model->getStatuses();
 
-        $_view = & $this->getView('applicants', 'html');
+        $_view = $this->getView('applicants', 'html');
 
-        $app =& JFactory::getApplication();
+        $app = JFactory::getApplication();
         $vcontext = $app->getUserStateFromRequest('com.jobboard.applicatnts.vcontext', 'vcontext', 1, 'int');
         if ($vcontext > 2) {
             $vcontext = 1;
@@ -62,10 +62,10 @@ class JobboardControllerApplicants extends JController {
 
         switch ($vcontext) {
             case 1 :
-                $appl_model =& $this->getModel('Applicants');
+                $appl_model = $this->getModel('Applicants');
                 break;
             case 2 :
-                $appl_model =& $this->getModel('Applicantssite');
+                $appl_model = $this->getModel('Applicantssite');
                 JToolBarHelper::deleteList();
                 break;
         }
@@ -81,14 +81,14 @@ class JobboardControllerApplicants extends JController {
     }
 
     function displaySingle($type) {
-        $app =& JFactory::getApplication();
+        $app = JFactory::getApplication();
         $vcontext = $app->getUserStateFromRequest('com.jobboard.applicatnts.vcontext', 'vcontext', 1, 'int');
         switch ($vcontext) {
             case 1:
                 $this->editApplication();
                 break;
             case 2:
-                $doc =& JFactory::getDocument();
+                $doc = JFactory::getDocument();
                 $style = " .icon-48-applicant_details {background-image:url(components/com_jobboard/images/applicant_details.png); no-repeat; }";
                 $doc->addStyleDeclaration($style);
 
@@ -99,15 +99,15 @@ class JobboardControllerApplicants extends JController {
                 JToolBarHelper::cancel('close', JText::_('COM_JOBBOARD_TXT_CLOSE'));
                 JobBoardToolbarHelper::setToolbarLinks('applicants');
 
-                $status_model =& $this->getModel('Status');
-                $appl_model =& $this->getModel('Applicantedit');
+                $status_model = $this->getModel('Status');
+                $appl_model = $this->getModel('Applicantedit');
                 $statuses = $status_model->getStatuses();
                 $departments = $status_model->getDepartments();
-                $cfig_model =& $this->getModel('Config');
+                $cfig_model = $this->getModel('Config');
                 $config = $cfig_model->getApplConfig();
 
                 JRequest::setVar('view', 'applicantedit');
-                $view = & $this->getView('applicantedit', 'html');
+                $view = $this->getView('applicantedit', 'html');
                 $view->setLayout('default_site');
                 $view->setModel($appl_model, true);
 
@@ -137,7 +137,7 @@ class JobboardControllerApplicants extends JController {
 
         if (count($cid)) {
             $cids = implode(',', $cid);
-            $jobs_model = & $this->getModel('Applicant');
+            $jobs_model = $this->getModel('Applicant');
             $delete_result = $jobs_model->deleteApplicants($cids);
             if ($delete_result <> true) {
                 //echo "<script> alert('".$db->getErrorMsg(true)."'); window.history.go(-1); </script>\n";
@@ -153,7 +153,7 @@ class JobboardControllerApplicants extends JController {
 
     function editApplication() {
 
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-applicant_details {background-image:url(components/com_jobboard/images/applicant_details.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -165,7 +165,7 @@ class JobboardControllerApplicants extends JController {
         JobBoardToolbarHelper::setToolbarLinks('applicants');
         require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_admappl.php');
 
-        $view =& $this->getView('applicantedit', 'html');
+        $view = $this->getView('applicantedit', 'html');
         // $view->setLayout('admin');
 
         $cids = JRequest::getVar('cid', array(), 'array');
@@ -175,8 +175,8 @@ class JobboardControllerApplicants extends JController {
 
         $appl_uid = $appl_ids['sid'];
         $qid = $appl_ids['qid'];
-        $applicant_model =& $this->getModel('Uapplicant');
-        $cfig_model =& $this->getModel('Config');
+        $applicant_model = $this->getModel('Uapplicant');
+        $cfig_model = $this->getModel('Config');
 
         if ($qid > 0) {
             $questionnaire = $applicant_model->getQuestionnaire($qid);
@@ -195,7 +195,7 @@ class JobboardControllerApplicants extends JController {
             }
         }
 
-        $user_model = & $this->getModel('User');
+        $user_model = $this->getModel('User');
         $job_title = $applicant_model->getApplJobTitle($jid);
 
         $prof_id = $appl_ids['pid'];
@@ -238,7 +238,7 @@ class JobboardControllerApplicants extends JController {
         $aid = JRequest::getInt('aid');
         $qid = JRequest::getInt('qid');
 
-        $applicant_model =& $this->getModel('Uapplicant');
+        $applicant_model = $this->getModel('Uapplicant');
 
         if ($qid > 0) {
             require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_appl.php');
@@ -291,7 +291,7 @@ class JobboardControllerApplicants extends JController {
             $applicant->last_name = '';
             $applicant->email = $applicant_details['email'];
             $applicant->auid = $applicant_details['id'];
-            $messg_model =& $this->getModel('Message');
+            $messg_model = $this->getModel('Message');
             $process_mail = JobBoardApplHelper::processMail($applicant, true, $messg_model);
             $msg = JText::sprintf('COM_JOBBOARD_ENT_UPDATED', JText::_('COM_JOBBOARD_JOBAPPLICATION'));
             $msgtype = 'Message';
@@ -314,7 +314,7 @@ class JobboardControllerApplicants extends JController {
         JRequest::checkToken('get') or jexit(JText::_('Invalid Token'));
 
         $dmode = JRequest::getInt('dmode', 0);
-        $applicant_model =& $this->getModel('Uapplicant');
+        $applicant_model = $this->getModel('Uapplicant');
         $file_id = JRequest::getInt('file');
 
         if ($dmode == 0) {
@@ -337,7 +337,7 @@ class JobboardControllerApplicants extends JController {
             $filename = $filepath . $fname;
         }
 
-        $view =& $this->getView('applicants', 'file');
+        $view = $this->getView('applicants', 'file');
         $view->assign('file', $filename);
 
         $view->display();

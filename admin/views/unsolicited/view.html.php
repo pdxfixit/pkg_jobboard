@@ -14,8 +14,8 @@ class JobboardViewUnsolicited extends JView {
     function display($tpl = null) {
         $app = JFactory::getApplication();
 
-        $rows =& $this->get('data');
-        $pagination =& $this->get('pagination');
+        $rows = $this->get('data');
+        $pagination = $this->get('pagination');
         $search = $this->get('search');
 
         $this->assignRef('rows', $rows);

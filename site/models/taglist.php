@@ -251,7 +251,7 @@ class JobboardModelTaglist extends JModel {
     }
 
     function getCategories() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT id, type
               FROM
                   #__jobboard_categories
@@ -262,7 +262,7 @@ class JobboardModelTaglist extends JModel {
     }
 
     function getDefaultCat() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT default_category
               FROM
                   #__jobboard_config';
@@ -350,7 +350,7 @@ class JobboardModelTaglist extends JModel {
     }
 
     function getCareerlvls() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT *
               FROM
                   #__jobboard_career_levels
@@ -362,7 +362,7 @@ class JobboardModelTaglist extends JModel {
     }
 
     function getEdlvls() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT *
               FROM
                   #__jobboard_education

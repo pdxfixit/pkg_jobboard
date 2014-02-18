@@ -48,7 +48,7 @@ class JobBoardJobHelper {
     }
 
     public static function jobPublished($job_id) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('published') . ' FROM ' . $db->nameQuote('#__jobboard_jobs') . '
             WHERE ' . $db->nameQuote('id') . ' = ' . $job_id;
         $db->setQuery($query);

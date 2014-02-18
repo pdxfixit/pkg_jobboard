@@ -10,10 +10,10 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.installer.installer');
 
 // Load Jobboard language file
-$lang = & JFactory::getLanguage();
+$lang = JFactory::getLanguage();
 $lang->load('com_jobboard');
 $src = $this->parent->getPath('source');
-$db = & JFactory::getDBO();
+$db = JFactory::getDBO();
 
 $status = new JObject();
 $status->modules = array();
@@ -24,11 +24,11 @@ $status->plugins = array();
  ******************************/
 
 if (version_compare(JVERSION, '1.6.0', 'ge')) {
-    $modules = & $this->manifest->xpath('modules/module');
+    $modules = $this->manifest->xpath('modules/module');
     $children = $modules;
     $is_go = true;
 } else {
-    $modules = & $this->manifest->getElementByPath('modules');
+    $modules = $this->manifest->getElementByPath('modules');
     $is_go = is_a($modules, 'JSimpleXMLElement') && count($modules->children()) ? true : false;
     if ($is_go)
         $children = $modules->children();
@@ -72,11 +72,11 @@ if ($is_go) {
  * *****************************/
 
 if (version_compare(JVERSION, '1.6.0', 'ge')) {
-    $plugins = & $this->manifest->xpath('plugins/plugin');
+    $plugins = $this->manifest->xpath('plugins/plugin');
     $children = $plugins;
     $is_go = true;
 } else {
-    $plugins = & $this->manifest->getElementByPath('plugins');
+    $plugins = $this->manifest->getElementByPath('plugins');
     $is_go = is_a($plugins, 'JSimpleXMLElement') && count($plugins->children()) ? true : false;
     if ($is_go)
         $children = $plugins->children();
@@ -122,13 +122,13 @@ if ($is_go) {
 if (JFolder::exists(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_joomfish' . DS . 'contentelements')) {
 
     if (version_compare(JVERSION, '1.6.0', 'ge')) {
-        $elements = & $this->manifest->xpath('joomfish/defn');
+        $elements = $this->manifest->xpath('joomfish/defn');
         foreach ($elements as $element) {
             if (JFile::exists(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_joomfish' . DS . 'contentelements' . DS . $element->data()))
                 JFile::delete(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_joomfish' . DS . 'contentelements' . DS . $element->data());
         }
     } else {
-        $elements = & $this->manifest->getElementByPath('joomfish');
+        $elements = $this->manifest->getElementByPath('joomfish');
         if (is_a($elements, 'JSimpleXMLElement') && count($elements->children())) {
             foreach ($elements->children() as $element) {
                 if (JFile::exists(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_joomfish' . DS . 'contentelements' . DS . $element->data()))

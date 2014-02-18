@@ -13,7 +13,7 @@ class JobboardViewApplicantEdit extends JView {
 
     function display($tpl = null) {
         $task = JRequest::getVar('task', '');
-        $row =& $this->get('data');
+        $row = $this->get('data');
 
         $this->assignRef('row', $row);
         $this->assign('jb_render', JobBoardHelper::renderJobBoardx());

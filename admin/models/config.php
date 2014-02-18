@@ -44,7 +44,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT * FROM ' . $db->nameQuote('#__jobboard_config') . '
                       WHERE id = ' . $this->_id . '';
         $db->setQuery($sql);
@@ -54,7 +54,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getApplConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT long_date_format FROM ' . $db->nameQuote('#__jobboard_config') . '
                       WHERE id = 1';
         $db->setQuery($sql);
@@ -64,7 +64,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getDepts() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT * FROM ' . $db->nameQuote('#__jobboard_departments');
         $db->setQuery($sql);
         $this->_result = $db->loadObjectlist();
@@ -73,7 +73,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getCountries() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT country_id, country_name FROM ' . $db->nameQuote('#__jobboard_countries');
         $db->setQuery($sql);
         $this->_result = $db->loadObjectlist();
@@ -82,7 +82,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getJobtypes() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT id, type FROM ' . $db->nameQuote('#__jobboard_types');
         $db->setQuery($sql);
         $this->_result = $db->loadObjectlist();
@@ -91,7 +91,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getCareers() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT * FROM ' . $db->nameQuote('#__jobboard_career_levels');
         $db->setQuery($sql);
         $this->_result = $db->loadObjectlist();
@@ -100,7 +100,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getEdu() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT * FROM ' . $db->nameQuote('#__jobboard_education');
         $db->setQuery($sql);
         $this->_result = $db->loadObjectlist();
@@ -109,7 +109,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getCategories() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT * FROM ' . $db->nameQuote('#__jobboard_categories');
         $db->setQuery($sql);
         $this->_result = $db->loadObjectlist();
@@ -118,7 +118,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function getUserGroups() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT * FROM ' . $db->nameQuote('#__jobboard_usr_groups');
         $db->setQuery($sql);
 
@@ -126,7 +126,7 @@ class JobboardModelConfig extends JModel {
     }
 
     function saveUserGroup($data) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'UPDATE ' . $db->nameQuote('#__jobboard_usr_groups') . '
                 SET ' . $db->nameQuote('group_name') . ' = ' . $db->Quote($data['group_name']) . ',
                    ' . $db->nameQuote('post_jobs') . ' = ' . $data['post_jobs'] . ',
@@ -151,7 +151,7 @@ class JobboardModelConfig extends JModel {
      * @return assoc scheduled tasks
      */
     function getSchedule() {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = "SELECT *
                       FROM " . $db->nameQuote('#__jobboard_sched_tasks') . "
                       WHERE " . $db->nameQuote('enabled') . " = 1";
@@ -168,7 +168,7 @@ class JobboardModelConfig extends JModel {
      * @return assoc table structure
      */
     function getTblStructure($table_name) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $sql = "SHOW COLUMNS
                       FROM " . $db->nameQuote($table_name);
         $db->setQuery($sql);

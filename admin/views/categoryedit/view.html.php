@@ -13,7 +13,7 @@ class JobboardViewCategoryedit extends JView {
 
     function display($tpl = null) {
         $task = JRequest::getVar('task', '');
-        $row =& JTable::getInstance('Category', 'Table');
+        $row = JTable::getInstance('Category', 'Table');
         $this->assign('jb_render', JobBoardHelper::renderJobBoardx());
         $cid = JRequest::getVar('cid', array(0), '', 'array');
         $id = $cid[0];

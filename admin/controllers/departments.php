@@ -29,13 +29,13 @@ class JobboardControllerDepartments extends JController {
         $cid = JRequest::getVar('cid', array(), '', 'array');
         JArrayHelper::toInteger($cid);
 
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
         if (count($cid)) {
             $cids = implode(',', $cid);
-            $jobs_model = & $this->getModel('Departments');
+            $jobs_model = $this->getModel('Departments');
             $delete_result = $jobs_model->deleteDepartments($cids);
             if ($delete_result <> true) {
                 $this->setRedirect('index.php?option=com_jobboard&view=departments', $delete_result);
@@ -47,7 +47,7 @@ class JobboardControllerDepartments extends JController {
     }
 
     function edit() {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-applicant_details {background-image:url(components/com_jobboard/images/applicant_details.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -57,7 +57,7 @@ class JobboardControllerDepartments extends JController {
         JToolBarHelper::save();
         JToolBarHelper::cancel();
 
-        $status_model =& $this->getModel('Status');
+        $status_model = $this->getModel('Status');
         $statuses = $status_model->getStatuses();
         $departments = $status_model->getDepartments();
         JRequest::setVar('statuses', $statuses);
@@ -69,7 +69,7 @@ class JobboardControllerDepartments extends JController {
 
     function display() //display list of all users
     {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_applicants {background-image:url(components/com_jobboard/images/job_applicants.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -84,10 +84,10 @@ class JobboardControllerDepartments extends JController {
         }
 
         JobBoardToolbarHelper::setToolbarLinks('departments');
-        $depts_model = & $this->getModel('Departments');
-        $status_model =& $this->getModel('Status');
+        $depts_model = $this->getModel('Departments');
+        $status_model = $this->getModel('Status');
 
-        $view = & $this->getView('departments', 'html');
+        $view = $this->getView('departments', 'html');
         $view->setModel($depts_model, true);
 
         $statuses = $status_model->getStatuses();

@@ -12,9 +12,9 @@ jimport('joomla.application.component.view');
 class JobboardViewUser extends JView {
 
     function display($tpl = null) {
-        $app = & JFactory::getApplication();
-        $today = & JFactory::getDate();
-        $uri = & JURI::getInstance();
+        $app = JFactory::getApplication();
+        $today = JFactory::getDate();
+        $uri = JURI::getInstance();
         $this->uri = $uri->getScheme() . '://' . $uri->getHost() . $uri->getPath();
         $itemid = JRequest::getInt('Itemid');
         $this->step = isset($this->step) ? $this->step : 0;
@@ -24,7 +24,7 @@ class JobboardViewUser extends JView {
         $_format = JRequest::getString('tmpl', '');
         $this->is_modal = $_format == 'component' ? true : false;
         $this->_addScripts($this->step, $this->is_modal);
-        $user = & JFactory::getUser();
+        $user = JFactory::getUser();
         $this->assignRef('user', $user);
         $this->day_format = !version_compare(JVERSION, '1.6.0', 'ge') ? '%d' : 'd';
         $this->month_long_format = !version_compare(JVERSION, '1.6.0', 'ge') ? '%B' : 'F';
@@ -47,8 +47,8 @@ class JobboardViewUser extends JView {
         }
         jimport('joomla.utilities.date');
         jimport('joomla.environment.browser');
-        $document =& JFactory::getDocument();
-        $browser =& JBrowser::getInstance();
+        $document = JFactory::getDocument();
+        $browser = JBrowser::getInstance();
         if (is_int(strpos($browser->getBrowser(), 'msie'))) {
             $document->addStyleSheet('components/com_jobboard/css/user_ie.css');
             if (intval($browser->getVersion()) > 7) {
@@ -122,21 +122,21 @@ class JobboardViewUser extends JView {
 
         switch ($this->context) {
             case 'cvprofiles':
-                $pagination =& $this->get('Pagination');
+                $pagination = $this->get('Pagination');
                 $this->assignRef('pagination', $pagination);
                 $results_count = $this->pagination->getResultsCounter();
                 $this->assignRef('results_count', $results_count);
                 break;
             case 'marked':
-                $pagination =& $this->get('Pagination');
+                $pagination = $this->get('Pagination');
                 $this->assignRef('pagination', $pagination);
                 $results_count = $this->pagination->getResultsCounter();
                 $this->assignRef('results_count', $results_count);
                 break;
             case 'invites':
-                $app = & JFactory::getApplication();
+                $app = JFactory::getApplication();
                 $cat_id = $app->getUserState('com_jobboard.list.selcat', 1);
-                $pagination =& $this->get('Pagination');
+                $pagination = $this->get('Pagination');
                 $this->assignRef('pagination', $pagination);
                 $results_count = $this->pagination->getResultsCounter();
                 $this->assignRef('results_count', $results_count);
@@ -144,7 +144,7 @@ class JobboardViewUser extends JView {
                 break;
             case 'applications':
                 require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_user.php');
-                $pagination =& $this->get('Pagination');
+                $pagination = $this->get('Pagination');
                 $this->assignRef('pagination', $pagination);
                 $results_count = $this->pagination->getResultsCounter();
                 $this->assignRef('results_count', $results_count);
@@ -155,9 +155,9 @@ class JobboardViewUser extends JView {
 
     function check() {
         jimport('joomla.filter.output');
-        $app =& JFactory::getApplication();
-        $menu =& $app->getMenu();
-        $item =& $menu->getActive();
+        $app = JFactory::getApplication();
+        $menu = $app->getMenu();
+        $item = $menu->getActive();
         if (empty($this->alias)) {
             $this->alias = $this->title;
         }

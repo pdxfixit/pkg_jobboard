@@ -24,13 +24,13 @@ class JobboardViewJobEdit extends JView {
             $this->assignRef('config', $cfigt);
         }
 
-        $lang = & JFactory::getLanguage()->getTag();
+        $lang = JFactory::getLanguage()->getTag();
         $lang = explode('-', $lang);
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         $_format = JRequest::getVar('format', '');
 
         jimport('joomla.environment.browser');
-        $browser =& JBrowser::getInstance();
+        $browser = JBrowser::getInstance();
         if (is_int(strpos($browser->getBrowser(), 'msie'))) {
             if (intval($browser->getVersion()) > 7) {
                 $cleafix = ".clearfix {display: block;}";

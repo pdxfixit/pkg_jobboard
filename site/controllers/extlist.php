@@ -31,7 +31,7 @@ class JobboardControllerExtlist extends JController {
         $app->setUserState('com_jobboard.extlist.limitstart', $post['limitstart'], 'int');
         $app->setUserState('com_jobboard.extlist.limit', $post['limit'], 'int');
         $results = array();
-        $model = & $this->getModel('Extlist');
+        $model = $this->getModel('Extlist');
         $results['data'] = $model->getData();
         $results['pagination'] = $model->getPaginationVars();
         $this->_returnJSON($results);
@@ -39,10 +39,10 @@ class JobboardControllerExtlist extends JController {
 
     private function _returnJSON($results) {
 
-        $view =& $this->getView('extlist', 'json');
+        $view = $this->getView('extlist', 'json');
         $view->assignRef('data', $results);
-        /* $document =& JFactory::getDocument();
-         $doc = & JDocument::getInstance('json');
+        /* $document = JFactory::getDocument();
+         $doc = JDocument::getInstance('json');
          $view->assignRef('doc', $doc);*/
 
         $view->display();

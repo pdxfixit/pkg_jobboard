@@ -17,13 +17,13 @@ class JobboardControllerJobEdit extends JController {
     function __construct(&$config = array()) {
         parent::__construct();
         $this->registerTask('repost', 'repostJob');
-        $this->_user = & JFactory::getUser();
+        $this->_user = JFactory::getUser();
     }
 
     function save() {
         JRequest::checkToken() or jexit('Invalid Token');
 
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         $job = JArrayHelper::toObject(JRequest::get('post'));
         $job->job_description = JRequest::getVar('job_description', 0, 'post', 'string', JREQUEST_ALLOWRAW);
         $job->duties = JRequest::getVar('duties', 0, 'post', 'string', JREQUEST_ALLOWRAW);
@@ -33,7 +33,7 @@ class JobboardControllerJobEdit extends JController {
 
         $newjob = false;
 
-        $job_model =& $this->getModel('Job');
+        $job_model = $this->getModel('Job');
         if (!$job->id || ($job->id < 1)) {
             $newjob = true;
             if (!$job_model->savenew($job)) {
@@ -46,9 +46,9 @@ class JobboardControllerJobEdit extends JController {
             }
 
         }
-        $config = & JTable::getInstance('Config', 'Table');
+        $config = JTable::getInstance('Config', 'Table');
         $config->load(1);
-        $dept_tbl = & JTable::getInstance('Department', 'Table');
+        $dept_tbl = JTable::getInstance('Department', 'Table');
         $dept_tbl->load($job->department);
 
         if ($dept_tbl->notify_admin == 1 || $dept_tbl->notify == 1) {
@@ -79,7 +79,7 @@ class JobboardControllerJobEdit extends JController {
 
         JRequest::checkToken() or jexit('Invalid Token');
 
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         $job = JArrayHelper::toObject(JRequest::get('post'));
         $job->job_description = JRequest::getVar('job_description', 0, 'post', 'string', JREQUEST_ALLOWRAW);
         $job->duties = JRequest::getVar('duties', 0, 'post', 'string', JREQUEST_ALLOWRAW);
@@ -88,7 +88,7 @@ class JobboardControllerJobEdit extends JController {
         $job->posted_by = $poster == 0 ? $this->_user->id : $poster;
 
         $newjob = false;
-        $job_model =& $this->getModel('Job');
+        $job_model = $this->getModel('Job');
         if (!$job->id || ($job->id < 1)) {
             $newjob = true;
             if (!$job_model->savenew($job)) {
@@ -101,9 +101,9 @@ class JobboardControllerJobEdit extends JController {
             }
         }
 
-        $config = & JTable::getInstance('Config', 'Table');
+        $config = JTable::getInstance('Config', 'Table');
         $config->load(1);
-        $dept_tbl = & JTable::getInstance('Department', 'Table');
+        $dept_tbl = JTable::getInstance('Department', 'Table');
         $dept_tbl->load($job->department);
 
         if ($dept_tbl->notify_admin == 1 || $dept_tbl->notify == 1) {
@@ -132,7 +132,7 @@ class JobboardControllerJobEdit extends JController {
     function apply() {
         JRequest::checkToken() or jexit('Invalid Token');
 
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         $job = JArrayHelper::toObject(JRequest::get('post'));
         $job->job_description = JRequest::getVar('job_description', 0, 'post', 'string', JREQUEST_ALLOWRAW);
         $job->duties = JRequest::getVar('duties', 0, 'post', 'string', JREQUEST_ALLOWRAW);
@@ -140,14 +140,14 @@ class JobboardControllerJobEdit extends JController {
         $poster = $app->getUserState('com_jobboard.backend.poster', 0, 'int');
         $job->posted_by = $poster == 0 ? $this->_user->id : $poster;
 
-        $job_model =& $this->getModel('Job');
+        $job_model = $this->getModel('Job');
         if (!$job_model->save($job)) {
             JError::raiseError(500, JText::_('COM_JOBBOARD_SAVE_ERR'));
         }
 
-        $config = & JTable::getInstance('Config', 'Table');
+        $config = JTable::getInstance('Config', 'Table');
         $config->load(1);
-        $dept_tbl = & JTable::getInstance('Department', 'Table');
+        $dept_tbl = JTable::getInstance('Department', 'Table');
         $dept_tbl->load($job->department);
 
         if ($dept_tbl->notify_admin == 1 || $dept_tbl->notify == 1) {
@@ -170,7 +170,7 @@ class JobboardControllerJobEdit extends JController {
     function repostJob() {
         JRequest::checkToken() or jexit('Invalid Token');
 
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         $job = JArrayHelper::toObject(JRequest::get('post'));
         $job->job_description = JRequest::getVar('job_description', 0, 'post', 'string', JREQUEST_ALLOWRAW);
         $job->duties = JRequest::getVar('duties', 0, 'post', 'string', JREQUEST_ALLOWRAW);
@@ -178,14 +178,14 @@ class JobboardControllerJobEdit extends JController {
         $poster = $app->getUserState('com_jobboard.backend.poster', 0, 'int');
         $job->posted_by = $poster == 0 ? $this->_user->id : $poster;
 
-        $job_model =& $this->getModel('Job');
+        $job_model = $this->getModel('Job');
         if (!$job_model->repostJob($job)) {
             JError::raiseError(500, JText::_('COM_JOBBOARD_SAVE_ERR'));
         }
 
-        $config = & JTable::getInstance('Config', 'Table');
+        $config = JTable::getInstance('Config', 'Table');
         $config->load(1);
-        $dept_tbl = & JTable::getInstance('Department', 'Table');
+        $dept_tbl = JTable::getInstance('Department', 'Table');
         $dept_tbl->load($job->department);
 
         if ($dept_tbl->notify_admin == 1 || $dept_tbl->notify == 1) {
@@ -224,7 +224,7 @@ class JobboardControllerJobEdit extends JController {
     }
 
     function sendEmail($msgobj, $config, $to_email, $msg_type) {
-        $messg_model =& $this->getModel('Message');
+        $messg_model = $this->getModel('Message');
         $msg_id = $messg_model->getMsgID($msg_type);
         $msg = $messg_model->getMsg($msg_id);
 
@@ -246,7 +246,7 @@ class JobboardControllerJobEdit extends JController {
         $body = str_replace('[status]', $job_status, $body);
 
         if ($msg_type == 'adminupdate' || $msg_type = 'adminnew') {
-            $user = & JFactory::getUser();
+            $user = JFactory::getUser();
             $body = str_replace('[appladmin]', $user->name, $body);
         }
 

@@ -23,8 +23,8 @@ class JobboardModelInviteslist extends JModel {
     function __construct() {
         parent::__construct();
 
-        $app = & JFactory::getApplication();
-        $config =& JFactory::getConfig();
+        $app = JFactory::getApplication();
+        $config = JFactory::getConfig();
         $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
         $limitstart = JRequest::getVar('limitstart', 0, '', 'int');
         //  $limit = 2;
@@ -59,7 +59,7 @@ class JobboardModelInviteslist extends JModel {
             $this->_data = $this->_getList($query, $this->getState('limitstart'), $this->getState('limit'));
 
             $count = $this->getTotal($query);
-            $app = & JFactory::getApplication();
+            $app = JFactory::getApplication();
             $app->setUserState('com.jobboard.user.invlist.count', $count);
         }
 
@@ -72,7 +72,7 @@ class JobboardModelInviteslist extends JModel {
      * @return integer
      */
     function getTotal($query = null) {
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         if (empty($this->_total)) {
             if (!$query) $query = $this->_buildQuery();
             $this->_total = $this->_getListCount($query);
@@ -87,7 +87,7 @@ class JobboardModelInviteslist extends JModel {
      * @return integer
      */
     function getPagination() {
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         if (empty($this->_pagination)) {
             jimport('joomla.html.pagination');
             $this->_pagination = new JPagination($this->getTotal(), $this->getState('limitstart'), $this->getState('limit'));

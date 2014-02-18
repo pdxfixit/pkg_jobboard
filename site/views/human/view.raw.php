@@ -11,7 +11,7 @@ jimport('joomla.application.component.view');
 class JobboardViewHuman extends JView {
 
     function display($tpl = null) {
-        $app =& JFactory::getApplication();
+        $app = JFactory::getApplication();
 
         $human_verif = new JobBoardHumanHelper();
         $human_verif->getImage();

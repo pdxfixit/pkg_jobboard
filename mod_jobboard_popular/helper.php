@@ -19,7 +19,7 @@ class modJobboardPopularHelper {
      * @return mixed Array of items, false on failure
      */
     function & getItems(&$params) {
-        $db = & JFactory :: getDBO();
+        $db = JFactory :: getDBO();
         $limit = $params->get('limit', 5);
         $query = modJobboardPopularHelper::_buildQuery($limit);
         $db->setQuery($query);
@@ -33,7 +33,7 @@ class modJobboardPopularHelper {
      * @return string SQL query
      */
     function _buildQuery($limit) {
-        $db = & JFactory :: getDBO();
+        $db = JFactory :: getDBO();
 
         return 'SELECT id, job_title, city, hits FROM ' . $db->nameQuote('#__jobboard_jobs') . ' WHERE ' . $db->nameQuote('published') . ' = 1
         ORDER BY hits DESC LIMIT ' . $limit;

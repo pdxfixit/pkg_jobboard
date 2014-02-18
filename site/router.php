@@ -20,12 +20,12 @@ defined('_JEXEC') or die('Restricted access');
 function JobboardBuildRoute(& $query) {
 
     $segments = array();
-    $menu = & JSite::getMenu();
+    $menu = JFactory::getApplication()->getMenu();
 
     if (empty($query['Itemid'])) {
-        $menuItem = & $menu->getActive();
+        $menuItem = $menu->getActive();
     } else {
-        $menuItem = & $menu->getItem($query['Itemid']);
+        $menuItem = $menu->getItem($query['Itemid']);
     }
 
     $jView = (empty($menuItem->query['view'])) ? null : $menuItem->query['view'];
@@ -367,7 +367,7 @@ function JobboardParseRoute($segments) {
 }
 
 function _parseItem($job_id) {
-    $db = & JFactory::getDBO();
+    $db = JFactory::getDBO();
     $_city = _useLoc() ? ', ' . $db->nameQuote('city') : '';
     $query = 'SELECT ' . $db->nameQuote('job_title') . $_city . ', ' . $db->nameQuote('ref_num') . '
             FROM ' . $db->nameQuote('#__jobboard_jobs') . '
@@ -386,7 +386,7 @@ function _parseItem($job_id) {
 }
 
 function _useLoc() {
-    $db = & JFactory::getDBO();
+    $db = JFactory::getDBO();
     $query = 'SELECT ' . $db->nameQuote('use_location') . '
             FROM ' . $db->nameQuote('#__jobboard_config') . '
             WHERE ' . $db->nameQuote('id') . ' = 1';
@@ -396,7 +396,7 @@ function _useLoc() {
 }
 
 function _parseCateg($cat_id) {
-    $db = & JFactory::getDBO();
+    $db = JFactory::getDBO();
     $query = 'SELECT ' . $db->nameQuote('type') . '
             FROM ' . $db->nameQuote('#__jobboard_categories') . '
             WHERE ' . $db->nameQuote('id') . ' = ' . $cat_id;

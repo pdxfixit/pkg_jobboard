@@ -16,7 +16,7 @@ class JobboardControllerUnsolicited extends JController {
     var $view;
 
     function edit() {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-applicant_details {background-image:url(components/com_jobboard/images/applicant_details.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -25,7 +25,7 @@ class JobboardControllerUnsolicited extends JController {
         JToolBarHelper::apply();
         JToolBarHelper::save();
         JToolBarHelper::cancel('close', JText::_('COM_JOBBOARD_TXT_CLOSE'));
-        $cfig_model =& $this->getModel('Config');
+        $cfig_model = $this->getModel('Config');
         $config = $cfig_model->getApplConfig();
 
         JRequest::setVar('config', $config);
@@ -38,13 +38,13 @@ class JobboardControllerUnsolicited extends JController {
         $cid = JRequest::getVar('cid', array(), '', 'array');
         JArrayHelper::toInteger($cid);
 
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_applicants.png.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
         if (count($cid)) {
             $cids = implode(',', $cid);
-            $jobs_model = & $this->getModel('Unsolicited');
+            $jobs_model = $this->getModel('Unsolicited');
             $delete_result = $jobs_model->deleteUnsolicited($cids);
             if ($delete_result <> true) {
                 $this->setRedirect('index.php?option=com_jobboard&view=unsolicited', $delete_result);
@@ -57,7 +57,7 @@ class JobboardControllerUnsolicited extends JController {
 
     function display() //display list of all users
     {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_applicants {background-image:url(components/com_jobboard/images/job_applicants.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -68,18 +68,18 @@ class JobboardControllerUnsolicited extends JController {
 
         JobBoardToolbarHelper::setToolbarLinks('applicants');
 
-        $app =& JFactory::getApplication();
+        $app = JFactory::getApplication();
         $vcontext = $app->getUserStateFromRequest('com.jobboard.applicatnts.vcontext', 'vcontext', 3, 'int');
 
-        $unsol_model =& $this->getModel('Unsolicited');
-        $cfig_model =& $this->getModel('Config');
+        $unsol_model = $this->getModel('Unsolicited');
+        $cfig_model = $this->getModel('Config');
         $config = $cfig_model->getApplConfig();
 
-        $status_model =& $this->getModel('Status');
+        $status_model = $this->getModel('Status');
         $statuses = $status_model->getStatuses();
         JRequest::setVar('view', 'unsolicited');
 
-        $_view = & $this->getView('unsolicited', 'html');
+        $_view = $this->getView('unsolicited', 'html');
         $_view->setModel($unsol_model, true);
         $_view->assignRef('statuses', $statuses);
         $_view->assignRef('config', $config);

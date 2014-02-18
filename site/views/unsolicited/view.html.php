@@ -21,7 +21,7 @@ class JobboardViewUnsolicited extends JView {
         $retries = $app->getUserState('com_jobboard.member.retry', 0, 'int');
         $this->retries = $retries;
 
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         $document->setTitle(JText::_('SUBMIT_YOUR_CV_RESUME'));
 
         if ($this->errors == 1)
@@ -39,8 +39,8 @@ class JobboardViewUnsolicited extends JView {
     function _addScripts() {
         JHTML::_('behavior.mootools');
         jimport('joomla.environment.browser');
-        $document =& JFactory::getDocument();
-        $browser =& JBrowser::getInstance();
+        $document = JFactory::getDocument();
+        $browser = JBrowser::getInstance();
         if (is_int(strpos($browser->getBrowser(), 'msie')))
             $document->addStyleSheet('components/com_jobboard/css/base_ie.css');
 

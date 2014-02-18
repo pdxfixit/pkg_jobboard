@@ -35,7 +35,7 @@ class JobboardModelMember extends JModel {
      * @return assoc
      */
     function getUserCred($uid) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT jg.*
                          ,ju.' . $db->nameQuote('user_status') . '
                   FROM ' . $db->nameQuote('#__jobboard_usr_groups') . ' AS jg
@@ -55,7 +55,7 @@ class JobboardModelMember extends JModel {
      * @return integer
      */
     function getDashConfig($user_id) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT ' . $db->nameQuote('login_dashboard') . ' FROM ' . $db->nameQuote('#__jobboard_users') . '
                       WHERE ' . $db->nameQuote('user_id') . ' = ' . $user_id;
         $db->setQuery($sql);
@@ -69,7 +69,7 @@ class JobboardModelMember extends JModel {
      * @return integer
      */
     function getModeswitchConfig($user_id) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT ' . $db->nameQuote('show_modeswitch') . ' FROM ' . $db->nameQuote('#__jobboard_users') . '
                       WHERE ' . $db->nameQuote('user_id') . ' = ' . $user_id;
         $db->setQuery($sql);
@@ -85,7 +85,7 @@ class JobboardModelMember extends JModel {
      * @return boolean
      */
     function toggleUserStatus($jid, $new_status) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'UPDATE ' . $db->nameQuote('#__jobboard_users') . ' SET ' . $db->nameQuote('user_status') . ' = ' . $new_status . '
                      WHERE ' . $db->nameQuote('id') . ' = ' . $jid;
         $db->setQuery($sql);
@@ -101,7 +101,7 @@ class JobboardModelMember extends JModel {
      * @return integer
      */
     function canFeature($uid) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('feature_jobs') . ' FROM ' . $db->nameQuote('#__jobboard_users') . '
               WHERE ' . $db->nameQuote('user_id') . ' = ' . $uid;
         $db->setQuery($query);
@@ -117,7 +117,7 @@ class JobboardModelMember extends JModel {
      * @return integer
      */
     function isEnabled($uid) {
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('user_status') . ' FROM ' . $db->nameQuote('#__jobboard_users') . '
               WHERE ' . $db->nameQuote('user_id') . ' = ' . $uid;
         $db->setQuery($query);

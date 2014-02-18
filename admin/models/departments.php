@@ -108,7 +108,7 @@ class JobboardModelDepartments extends JModel {
     function _buildQueryOrderBy() { // get the application and DBO
         $app = JFactory::getApplication();
 
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $defaultOrderField = 'name';
         $order = $app->getUserStateFromRequest('com_jobboard.departments.filterOrder', 'filter_order', $defaultOrderField, 'word');
         $orderDirection = $app->getUserStateFromRequest('com_jobboard.departments.filterOrderDirection', 'filter_order_Dir', 'DESC', 'cmd');
@@ -118,7 +118,7 @@ class JobboardModelDepartments extends JModel {
     }
 
     function deleteDepartments($serialised_id_array) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'DELETE FROM #__jobboard_departments'
             . ' WHERE id IN ( ' . $serialised_id_array . ' )';
         $db->setQuery($this->_query);

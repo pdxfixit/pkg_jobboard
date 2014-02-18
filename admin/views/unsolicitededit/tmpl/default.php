@@ -8,7 +8,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 $option = 'com_jobboard';
-$editor = & JFactory :: getEditor();
+$editor = JFactory :: getEditor();
 ?>
 <?php JHTML::_('stylesheet', 'files.css', 'administrator/components/com_jobboard/css/') ?>
     <form action="index.php" method="post" name="adminForm" id="adminForm">

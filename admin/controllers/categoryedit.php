@@ -27,7 +27,7 @@ class JobboardControllerCategoryEdit extends JController {
     }
 
     function edit() {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-applicant_details {background-image:url(components/com_jobboard/images/applicant_details.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 

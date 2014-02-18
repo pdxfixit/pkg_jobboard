@@ -14,13 +14,13 @@ class JobboardViewShare extends JView {
 
     function display($tpl = null) {
         $app = JFactory::getApplication();
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         $this->_addScripts();
 
         if ($this->published) {
             jimport('joomla.utilities.date');
 
-            //$this->config = & $this->get('ShareConfig', 'Config');
+            //$this->config = $this->get('ShareConfig', 'Config');
             $this->assign('setstate', JobBoardHelper::renderJobBoard());
 
             if ($this->config->use_location) {
@@ -50,8 +50,8 @@ class JobboardViewShare extends JView {
     private function _addScripts() {
         JHTML::_('behavior.mootools');
         jimport('joomla.environment.browser');
-        $document =& JFactory::getDocument();
-        $browser =& JBrowser::getInstance();
+        $document = JFactory::getDocument();
+        $browser = JBrowser::getInstance();
         if (is_int(strpos($browser->getBrowser(), 'msie')))
             $document->addStyleSheet('components/com_jobboard/css/base_ie.css');
     }

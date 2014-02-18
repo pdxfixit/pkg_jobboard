@@ -46,13 +46,13 @@ class JobboardControllerTaglist extends JController {
         require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_format.php');
 
         $g_radius = $units == 1 ? 3959 : 6371; // Miles/Km
-        $lang =& JLanguageHelper::detectLanguage();
+        $lang = JLanguageHelper::detectLanguage();
         $lang = explode('-', $lang);
 
         if (!is_array($lat_long_coordinates)) {
             $app = JFactory::getApplication();
 
-            $api_cache = & JFactory::getCache();
+            $api_cache = JFactory::getCache();
             $api_cache->setCaching(1);
             //get coordinates by location string if not provided
 
@@ -176,7 +176,7 @@ class JobboardControllerTaglist extends JController {
         $sort = JString::trim($app->getUserStateFromRequest('com_jobboard.tl.list.sort', 'sort', ''));
         $order = JString::trim($app->getUserStateFromRequest('com_jobboard.tl.list.order', 'order', '', 'string'));
 
-        $config_model =& $this->getModel('Config');
+        $config_model = $this->getModel('Config');
         $layout = JRequest::getString('layout', '');
         if (empty($layout)) {
             $layout_instate = $app->getUserState('com_jobboard.list.layout');
@@ -224,11 +224,11 @@ class JobboardControllerTaglist extends JController {
             $app->setUserState('com_jobboard.tl.use_location', 0, 'int');
         }
 
-        $cat_model =& $this->getModel('Taglist');
+        $cat_model = $this->getModel('Taglist');
 
         $view = $app->getUserStateFromRequest('com_jobboard.tl.list.view', 'view', 'list');
         $format = JRequest::getString('format') == 'feed' ? 'feed' : 'html';
-        $view =& $this->getView($view, $format);
+        $view = $this->getView($view, $format);
 
         $view->assign('selcat', $selcat);
         $view->assign('keysrch', $keysrch);

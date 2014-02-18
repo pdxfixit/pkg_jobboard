@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------- */
 
 defined('_JEXEC') or die('Restricted access');
-$document = & JFactory::getDocument();
+$document = JFactory::getDocument();
 $document->setTitle(JText::_('COM_JOBBOARD') . ': ' . JText::_('COM_JOBBOARD_MYJOBAPPLICATIONS'));
 ?>
 <?php if (!$this->is_modal) : ?>

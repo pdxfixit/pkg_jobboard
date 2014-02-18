@@ -28,7 +28,7 @@ class JobboardControllerJobs extends JController {
             $id = $cid[0];
         } else $id = JRequest::getInt('id', 0);
 
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_details {background-image:url(components/com_jobboard/images/job_details.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -42,9 +42,9 @@ class JobboardControllerJobs extends JController {
         JToolBarHelper::cancel('close', JText::_('COM_JOBBOARD_TXT_CLOSE'));
         JobBoardToolbarHelper::setToolbarLinks('jobs');
 
-        $job_model =& $this->getModel('Jobs');
+        $job_model = $this->getModel('Jobs');
         $job_data = $job_model->getJob($id);
-        $app = & JFactory::getApplication();
+        $app = JFactory::getApplication();
         if (isset($job_data->posted_by)) {
             $app->setUserState('com_jobboard.backend.poster', $job_data->posted_by, 'int');
         } else
@@ -57,12 +57,12 @@ class JobboardControllerJobs extends JController {
         $job_applicants = $job_model->getJobApplsCount($id);
         $config = $job_model->getConfig();
 
-        $status_model =& $this->getModel('Status');
+        $status_model = $this->getModel('Status');
         $statuses = $status_model->getStatuses();
         $departments = $status_model->getDepartments();
         $questionnaires = $job_model->getQuestionnaires();
 
-        $view = & $this->getView('jobedit', 'html');
+        $view = $this->getView('jobedit', 'html');
         $view->setModel($job_model, true);
 
         $view->assignRef('job_post', $job_data);
@@ -92,7 +92,7 @@ class JobboardControllerJobs extends JController {
     }
 
     function display() {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -109,7 +109,7 @@ class JobboardControllerJobs extends JController {
         }
 
         JobBoardToolbarHelper::setToolbarLinks('jobs');
-        $job_model =& $this->getModel('Jobs');
+        $job_model = $this->getModel('Jobs');
 
         parent::display();
     }
@@ -137,7 +137,7 @@ class JobboardControllerJobs extends JController {
 
         if (count($cid)) {
             $cids = implode(',', $cid);
-            $jobs_model = & $this->getModel('Jobs');
+            $jobs_model = $this->getModel('Jobs');
             $delete_result = $jobs_model->deleteJobs($cids);
             if (!$delete_result) {
                 $this->setRedirect('index.php?option=com_jobboard&view=jobs', $db->getErrorMsg(true));
@@ -167,7 +167,7 @@ class JobboardControllerJobs extends JController {
 
         JArrayHelper::toInteger($cid);
         $cids = implode(',', $cid);
-        $jobs_model = & $this->getModel('Jobs');
+        $jobs_model = $this->getModel('Jobs');
         $delete_result = $jobs_model->setPublishStatus($publish, $cids);
 
         if (!$delete_result) {
@@ -195,7 +195,7 @@ class JobboardControllerJobs extends JController {
 
         JArrayHelper::toInteger($cid);
         $cids = implode(',', $cid);
-        $jobs_model = & $this->getModel('Jobs');
+        $jobs_model = $this->getModel('Jobs');
         $toggle_result = $jobs_model->setFeatureStatus($feature, $cids);
 
         if (!$toggle_result) {

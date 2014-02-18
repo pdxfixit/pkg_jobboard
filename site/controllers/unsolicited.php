@@ -20,11 +20,11 @@ class JobboardControllerUnsolicited extends JController {
 
     function getApplicationForm() {
         $catid = JRequest :: getVar('catid', '', '', 'int');
-        $config_model =& $this->getModel('Config');
+        $config_model = $this->getModel('Config');
         $config = $config_model->getUnsolConfig();
 
         //set the view parameters
-        $view =& $this->getView('unsolicited', 'html');
+        $view = $this->getView('unsolicited', 'html');
 
         $view->setModel($config_model, true);
         $view->assignRef('config', $config);

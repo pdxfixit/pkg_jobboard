@@ -109,7 +109,7 @@ class JobboardModelUnsolicited extends JModel {
     function _buildQueryOrderBy() { // get the application and DBO
         $app = JFactory::getApplication();
 
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $defaultOrderField = 'request_date';
         $order = $app->getUserStateFromRequest('com_jobboard.unsolicited.filterOrder', 'filter_order', $defaultOrderField);
         $orderDirection = $app->getUserStateFromRequest('com_jobboard.unsolicited.filterOrderDirection', 'filter_order_Dir', 'DESC', 'cmd');
@@ -119,7 +119,7 @@ class JobboardModelUnsolicited extends JModel {
     }
 
     function deleteUnsolicited($serialised_id_array) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'DELETE FROM #__jobboard_unsolicited'
             . ' WHERE id IN ( ' . $serialised_id_array . ' )';
         $db->setQuery($this->_query);

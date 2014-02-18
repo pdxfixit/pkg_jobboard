@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted Access');
 class JobboardModelJobboard extends JModel {
 
     function getIntroConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `id`, `home_intro_title`, `home_intro`, `home_jobs_limit` FROM `#__jobboard_config`
                       WHERE `id` = 1';
         $db->setQuery($sql);
@@ -21,7 +21,7 @@ class JobboardModelJobboard extends JModel {
 
     function getIntroCats() {
         $app = JFactory::getApplication();
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = '(SELECT c.`id`, COUNT(category) AS total, c.`type` AS `name`
                      FROM #__jobboard_categories AS c JOIN #__jobboard_jobs AS j
                      ON( c.id = j.`category`) WHERE c.`enabled` = 1 AND j.`published` = 1

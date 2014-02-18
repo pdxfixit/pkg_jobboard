@@ -14,11 +14,11 @@ class JobboardViewRss extends JView {
     function display($tpl = null) {
 
         $keywd = JString::strtolower($this->keysrch);
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         $document->setLink(JRoute::_('index.php?option=com_jobboard&view=list&selcat=' . $this->selcat));
-        $db = & JFactory::getDBO();
+        $db = JFactory::getDBO();
 
-        $this->use_location = & $this->get('LocConf');
+        $this->use_location = $this->get('LocConf');
 
         // get the items to add to the feed
         $where = ($this->selcat == 1) ? '' : ' WHERE c.' . $db->nameQuote('id') . ' = ' . $this->selcat;

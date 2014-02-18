@@ -109,7 +109,7 @@ class JobboardModelCareerlevels extends JModel {
     function _buildQueryOrderBy() { // get the application and DBO
         $app = JFactory::getApplication();
 
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $defaultOrderField = 'description';
         $order = $app->getUserStateFromRequest('com_jobboard.careerlevels.filterOrder', 'filter_order', $defaultOrderField, 'word');
         $orderDirection = $app->getUserStateFromRequest('com_jobboard.careerlevels.filterOrderDirection', 'filter_order_Dir', 'DESC', 'cmd');
@@ -119,7 +119,7 @@ class JobboardModelCareerlevels extends JModel {
     }
 
     function deleteCareers($serialised_id_array) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'DELETE FROM #__jobboard_career_levels'
             . ' WHERE id IN ( ' . $serialised_id_array . ' )';
         $db->setQuery($this->_query);

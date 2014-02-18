@@ -22,7 +22,7 @@ class JobboardControllerDashboard extends JController {
      * Accessible at index.php?option=com_Jobboard
      */
     function display() {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_board {background-image:url(components/com_jobboard/images/job_board.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 

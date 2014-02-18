@@ -110,7 +110,7 @@ class JobboardModelEducation extends JModel {
     function _buildQueryOrderBy() { // get the application and DBO
         $app = JFactory::getApplication();
 
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $defaultOrderField = 'level';
         $order = $app->getUserStateFromRequest('com_jobboard.education.filterOrder', 'filter_order', $defaultOrderField);
         $orderDirection = $app->getUserStateFromRequest('com_jobboard.education.filterOrderDirection', 'filter_order_Dir', 'DESC', 'cmd');
@@ -120,7 +120,7 @@ class JobboardModelEducation extends JModel {
     }
 
     function deleteEdlevels($serialised_id_array) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'DELETE FROM #__jobboard_education'
             . ' WHERE id IN ( ' . $serialised_id_array . ' )';
         $db->setQuery($this->_query);

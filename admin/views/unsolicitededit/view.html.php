@@ -13,7 +13,7 @@ class JobboardViewUnsolicitedEdit extends JView {
 
     function display($tpl = null) {
         $task = JRequest::getVar('task', '');
-        $row =& $this->get('data');
+        $row = $this->get('data');
 
         $this->assign('jb_render', JobBoardHelper::renderJobBoardx());
         $this->assignRef('config', JRequest::getVar('config', ''));

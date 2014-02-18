@@ -144,7 +144,7 @@ class JobboardModelJobs extends JModel {
     function _buildQueryOrderBy() { // get the application and DBO
         $app = JFactory::getApplication();
 
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $defaultOrderField = 'post_date';
         $order = $app->getUserStateFromRequest('com_jobboard.jobs.filterOrder', 'filter_order', $defaultOrderField);
         //$order = ($order == 'status')? 'enabled' : $order;
@@ -157,7 +157,7 @@ class JobboardModelJobs extends JModel {
     function getJob($id) {
 
         if (empty($this->_job)) {
-            $db =& $this->getDBO();
+            $db = $this->getDBO();
             $this->_query = 'SELECT *
                   FROM
                       #__jobboard_jobs
@@ -170,7 +170,7 @@ class JobboardModelJobs extends JModel {
     }
 
     function getApplicants($job_id) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'SELECT a.id, a.first_name, a.last_name, a.request_date
                   FROM
                       #__jobboard_applicants AS a
@@ -183,7 +183,7 @@ class JobboardModelJobs extends JModel {
     }
 
     function getCountries() {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'SELECT * FROM #__jobboard_countries';
         $db->setQuery($this->_query);
         $this->_countries = $db->loadObjectList();
@@ -192,7 +192,7 @@ class JobboardModelJobs extends JModel {
     }
 
     function getCareers() {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'SELECT * FROM #__jobboard_career_levels';
         $db->setQuery($this->_query);
         $this->_careers = $db->loadObjectList();
@@ -201,7 +201,7 @@ class JobboardModelJobs extends JModel {
     }
 
     function getEducation() {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'SELECT * FROM #__jobboard_education';
         $db->setQuery($this->_query);
         $this->_education = $db->loadObjectList();
@@ -210,7 +210,7 @@ class JobboardModelJobs extends JModel {
     }
 
     function getCategories() {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'SELECT * FROM #__jobboard_categories';
         $db->setQuery($this->_query);
         $this->_categories = $db->loadObjectList();
@@ -219,7 +219,7 @@ class JobboardModelJobs extends JModel {
     }
 
     function deleteJobs($serialised_id_array) {
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $this->_query = 'DELETE FROM #__jobboard_jobs'
             . ' WHERE id IN ( ' . $serialised_id_array . ' )';
         $db->setQuery($this->_query);
@@ -230,7 +230,7 @@ class JobboardModelJobs extends JModel {
     }
 
     function getConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT long_date_format, short_date_format, date_separator, use_location FROM #__jobboard_config
                       WHERE id = 1';
         $db->setQuery($sql);
@@ -240,7 +240,7 @@ class JobboardModelJobs extends JModel {
     }
 
     function getListConfig() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT long_date_format FROM #__jobboard_config
                       WHERE id = 1';
         $db->setQuery($sql);
@@ -251,7 +251,7 @@ class JobboardModelJobs extends JModel {
 
     function setPublishStatus($status, $cids) {
 
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $query = 'UPDATE #__jobboard_jobs
 					 SET published = ' . (int)$status . '
 					 WHERE id IN ( ' . $cids . '  )';
@@ -268,7 +268,7 @@ class JobboardModelJobs extends JModel {
      * @return assoc
      */
     function getQuestionnaires() {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT q.`id`, q.`qid`, q.`created_by`, q.`title`, q.`fields`,
                               u.`name`
                             FROM #__jobboard_questionnaires AS q
@@ -290,7 +290,7 @@ class JobboardModelJobs extends JModel {
      */
     function setFeatureStatus($value, $cids) {
 
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $query = 'UPDATE ' . $db->nameQuote('#__jobboard_jobs') . '
 					 SET ' . $db->nameQuote('featured') . ' = ' . (int)$value . '
 					 WHERE ' . $db->nameQuote('id') . ' IN ( ' . $cids . '  )';
@@ -309,7 +309,7 @@ class JobboardModelJobs extends JModel {
      */
     function getJobApplsCount($jid) {
 
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT COUNT(a.id)
                      FROM  `#__jobboard_usr_applications` AS a
                      INNER JOIN `#__jobboard_jobs` AS j

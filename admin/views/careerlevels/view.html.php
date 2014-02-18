@@ -14,8 +14,8 @@ class JobboardViewCareerlevels extends JView {
     function display($tpl = null) {
         $app = JFactory::getApplication();
 
-        $rows =& $this->get('data');
-        $pagination =& $this->get('pagination');
+        $rows = $this->get('data');
+        $pagination = $this->get('pagination');
         $this->assignRef('rows', $rows);
         $this->assignRef('pagination', $pagination);
         $this->assign('jb_render', JobBoardHelper::renderJobBoardx());

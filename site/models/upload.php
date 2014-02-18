@@ -28,7 +28,7 @@ class JobboardModelUpload extends JModel {
      * @return boolean
      */
     function saveApplication(&$fileobj, $field_array, $unsol = false) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $tbl = $unsol == true ? $db->nameQuote('#__jobboard_unsolicited') : $db->nameQuote('#__jobboard_applicants');
         $query = 'INSERT INTO ' . $tbl . '
                 (' . $db->nameQuote('request_date') . ', ' . $db->nameQuote('job_id') . ',
@@ -63,7 +63,7 @@ class JobboardModelUpload extends JModel {
     }
 
     function incrApplications($id) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $query = 'UPDATE #__jobboard_jobs SET
                 num_applications =  num_applications + 1
                 WHERE id=' . $id;
@@ -75,7 +75,7 @@ class JobboardModelUpload extends JModel {
     }
 
     function getData($id) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT
                        j.post_date
                       , j.job_title
@@ -106,7 +106,7 @@ class JobboardModelUpload extends JModel {
 
     function getDept($job_id) {
         $department = $this->_getDeptId($job_id);
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT  `name`, `contact_name`, `contact_email`, `notify`, `notify_admin` FROM #__jobboard_departments
                       WHERE `id` = ' . intval($department);
         $db->setQuery($sql);
@@ -115,7 +115,7 @@ class JobboardModelUpload extends JModel {
     }
 
     function _getDeptId($job_id) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT `department`  FROM #__jobboard_jobs
                       WHERE id = ' . intval($job_id);
         $db->setQuery($sql);
@@ -124,7 +124,7 @@ class JobboardModelUpload extends JModel {
     }
 
     function getJobLocation($job_id) {
-        $db = & $this->getDBO();
+        $db = $this->getDBO();
         $sql = 'SELECT city FROM  #__jobboard_jobs
                       WHERE id = ' . intval($job_id);
         $db->setQuery($sql);

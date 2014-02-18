@@ -16,7 +16,7 @@ class modJobboardCattotalsHelper {
      * @return mixed Array of items, false on failure
      */
     function & getItems(&$params) {
-        $db = & JFactory :: getDBO();
+        $db = JFactory :: getDBO();
         $limit = $params->get('limit', 10);
         $query = modJobboardCattotalsHelper::_buildQuery($limit);
         $db->setQuery($query);
@@ -30,7 +30,7 @@ class modJobboardCattotalsHelper {
      * @return string SQL query
      */
     function _buildQuery($limit) {
-        $db = & JFactory :: getDBO();
+        $db = JFactory :: getDBO();
 
         return 'SELECT a.type, a.id, count( category ) as total FROM ' . $db->nameQuote('#__jobboard_categories') . ' as a, ' . $db->nameQuote('#__jobboard_jobs') . ' as b  WHERE a.id = b.category AND a.enabled = 1
         GROUP BY category ORDER BY category DESC LIMIT ' . $limit;

@@ -121,7 +121,7 @@ class JobboardModelApplicants extends JModel {
     function _buildQueryOrderBy() { // get the application and DBO
         $app = JFactory::getApplication();
 
-        $db =& $this->getDBO();
+        $db = $this->getDBO();
         $defaultOrderField = 'request_date';
         $order = $app->getUserStateFromRequest('com_jobboard.applicants.filterOrder', 'filter_order', $defaultOrderField);
         $orderDirection = $app->getUserStateFromRequest('com_jobboard.applicants.filterOrderDirection', 'filter_order_Dir', 'DESC', 'cmd');

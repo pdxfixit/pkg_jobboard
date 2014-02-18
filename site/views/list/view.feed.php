@@ -18,11 +18,11 @@ class JobboardViewList extends JView {
 
         $catid = $this->selcat;
         $keywd = $this->keysrch;
-        $document =& JFactory::getDocument();
+        $document = JFactory::getDocument();
         $document->setLink(JRoute::_('index.php?option=com_jobboard&selcat=' . $catid));
 
         // get category name
-        $db =& JFactory::getDBO();
+        $db = JFactory::getDBO();
         $query = 'SELECT ' . $db->nameQuote('type') . ' FROM ' . $db->nameQuote('#__jobboard_categories') . ' WHERE ' . $db->nameQuote('id') . ' = ' . $catid;
         $db->setQuery($query);
         $seldesc = $db->loadResult();

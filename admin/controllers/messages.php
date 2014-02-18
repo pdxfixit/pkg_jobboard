@@ -43,7 +43,7 @@ class JobboardControllerMessages extends JController {
 
     function display() //display list of all messages
     {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-job_posts {background-image:url(components/com_jobboard/images/job_posts.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
@@ -64,7 +64,7 @@ class JobboardControllerMessages extends JController {
     function displaySingle($type) //display a single email that can be edited
     {
 
-        /* $_view  =& $this->getView('messageedit', 'html');
+        /* $_view  = $this->getView('messageedit', 'html');
          if($type='new') $_view->assign('task', 'add');
 
         // echo '<pre>'.print_r(JRequest::get('post'), true).'</pre>' ; die;
@@ -78,7 +78,7 @@ class JobboardControllerMessages extends JController {
         JRequest::checkToken() or jexit('Invalid Token');
 
         $cid = JRequest::getVar('cid', array(0));
-        $row =& JTable::getInstance('Messages', 'Table');
+        $row = JTable::getInstance('Messages', 'Table');
 
         foreach ($cid as $id) {
             $id = (int)safe($id);

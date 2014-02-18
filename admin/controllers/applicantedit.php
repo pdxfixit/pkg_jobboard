@@ -23,26 +23,26 @@ class JobboardControllerApplicantEdit extends JController {
         JRequest::checkToken() or jexit('Invalid Token');
         $applicant = JArrayHelper::toObject(JRequest::get('POST'));
 
-        $appl_model =& $this->getModel('Applicant');
+        $appl_model = $this->getModel('Applicant');
         if (!$appl_model->save($applicant)) {
             JError::raiseError(500, $appl_model->getError());
         } else {
             require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_appl.php');
-            $messg_model =& $this->getModel('Message');
+            $messg_model = $this->getModel('Message');
             $process_mail = JobBoardApplHelper::processMail($applicant, false, $messg_model);
             $this->setRedirect('index.php?option=com_jobboard&view=applicants', JText::_('COM_JOBBOARD_JOB_APP_SAVED'));
         }
     }
 
     function edit() {
-        $doc =& JFactory::getDocument();
+        $doc = JFactory::getDocument();
         $style = " .icon-48-applicant_details {background-image:url(components/com_jobboard/images/applicant_details.png); no-repeat; }";
         $doc->addStyleDeclaration($style);
 
         JToolBarHelper::title(JText::_('COM_JOBBOARD_APPLICANT_DETAILS'), 'applicant_details.png');
         JToolBarHelper::save();
         JToolBarHelper::cancel('close', JText::_('COM_JOBBOARD_TXT_CLOSE'));
-        $cfig_model =& $this->getModel('Config');
+        $cfig_model = $this->getModel('Config');
         $config = $cfig_model->getApplConfig();
 
         $view = $this->getView('config', 'html');
@@ -56,14 +56,14 @@ class JobboardControllerApplicantEdit extends JController {
         JRequest::checkToken() or jexit('Invalid Token');
         $applicant = JArrayHelper::toObject(JRequest::get('POST'));
 
-        $appl_model =& $this->getModel('Applicant');
+        $appl_model = $this->getModel('Applicant');
         if (!$appl_model->save($applicant)) {
             JError::raiseError(500, $appl_model->getError());
         } else {
             $saved_text = JText::_('COM_JOBBOARD_JOB_APP_SAVED');
             $feedback_string = $saved_text;
             require_once(JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'jobboard_appl.php');
-            $messg_model =& $this->getModel('Message');
+            $messg_model = $this->getModel('Message');
             $process_mail = JobBoardApplHelper::processMail($applicant, false, $messg_model);
             $this->setRedirect('index.php?option=com_jobboard&view=applicants&task=edit&cid[]=' . $applicant->id, $feedback_string);
         }
@@ -88,7 +88,7 @@ class JobboardControllerApplicantEdit extends JController {
     }
 
     function sendEmail($msgobj, $config, $to_email, $msg_type) {
-        $messg_model =& $this->getModel('Message');
+        $messg_model = $this->getModel('Message');
         $msg_id = $messg_model->getMsgID($msg_type);
         $msg = $messg_model->getMsg($msg_id);
 
@@ -109,9 +109,9 @@ class JobboardControllerApplicantEdit extends JController {
         $body = str_replace('[fromname]', $fromname, $body);
 
         if ($msg_type == 'adminupdate_application') {
-            $status_tbl = & JTable::getInstance('Status', 'Table');
+            $status_tbl = JTable::getInstance('Status', 'Table');
             $status_tbl->load($msgobj->status);
-            $user = & JFactory::getUser();
+            $user = JFactory::getUser();
             $body = str_replace('[appladmin]', $user->name, $body);
             $body = str_replace('[department]', $msgobj->dept_name, $body);
             $body = str_replace('[applstatus]', $status_tbl->status_description, $body);

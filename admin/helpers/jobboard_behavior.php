@@ -54,7 +54,7 @@ if (version_compare(JVERSION, '1.6.0', 'ge')) {
             $options = self::_getJSObject($opt);
 
             jimport('joomla.environment.browser');
-            $browser =& JBrowser::getInstance();
+            $browser = JBrowser::getInstance();
             $_dom_listener = (is_int(strpos($browser->getBrowser(), 'msie'))) ? 'load' : 'domready';
             // Attach modal behavior to document
             $document
@@ -105,7 +105,7 @@ if (version_compare(JVERSION, '1.6.0', 'ge')) {
             $options = self::_getJSObject($opt);
 
             jimport('joomla.environment.browser');
-            $browser =& JBrowser::getInstance();
+            $browser = JBrowser::getInstance();
             $_dom_listener = (is_int(strpos($browser->getBrowser(), 'msie'))) ? 'load' : 'domready';
 
             // Attach tooltips to document
@@ -176,7 +176,7 @@ if (version_compare(JVERSION, '1.6.0', 'ge')) {
             $options = self::_getJSObject($opt);
 
             jimport('joomla.environment.browser');
-            $browser =& JBrowser::getInstance();
+            $browser = JBrowser::getInstance();
             $_dom_listener = (is_int(strpos($browser->getBrowser(), 'msie'))) ? 'load' : 'domready';
             // Attach modal behavior to document
             $document
@@ -231,7 +231,7 @@ if (version_compare(JVERSION, '1.6.0', 'ge')) {
             $options = self::_getJSObject($opt);
 
             jimport('joomla.environment.browser');
-            $browser =& JBrowser::getInstance();
+            $browser = JBrowser::getInstance();
             $_dom_listener = (is_int(strpos($browser->getBrowser(), 'msie'))) ? 'load' : 'domready';
 
             // Attach tooltips to document

@@ -10,7 +10,7 @@ defined('_JEXEC') or die('Restricted access');
 $option = 'com_jobboard';
 
 $newjob = $this->newjob;
-$editor = & JFactory :: getEditor();
+$editor = JFactory :: getEditor();
 $job_types = array('COM_JOBBOARD_DB_JFULLTIME', 'COM_JOBBOARD_DB_JCONTRACT', 'COM_JOBBOARD_DB_JPARTTIME', 'COM_JOBBOARD_DB_JTEMP', 'COM_JOBBOARD_DB_JINTERN', 'COM_JOBBOARD_DB_JOTHER');
 ?>
 <?php if (!$this->is_modal) : ?>

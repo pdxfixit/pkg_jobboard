@@ -14,11 +14,11 @@ jimport('joomla.application.component.helper');
 if (!JComponentHelper::isEnabled('com_jobboard', true)) {
     JError::raiseError('Component not found or not enabled', JText('MOD_JOBBOARD_JOBFILTER_JOBBOARD_NOTFOUND'));
 }
-$document =& JFactory::getDocument();
+$document = JFactory::getDocument();
 $document->addStyleSheet('modules/mod_jobboard_cattotals/css/style.css');
 
 require_once(dirname(__FILE__) . DS . 'helper.php');
-$categories =& modJobboardCattotalsHelper::getItems($params);
+$categories = modJobboardCattotalsHelper::getItems($params);
 require(JModuleHelper::getLayoutPath('mod_jobboard_cattotals'));
 
 ?>
